@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_black"
+    >
+
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/status_height" />
+
+        <ImageView
+            android:id="@+id/self_title_back"
+            android:layout_width="match_parent"
+            android:layout_height="206dp"
+            android:background="@drawable/icon_self_back"
+            android:scaleType="fitXY" />
+
+        <RelativeLayout
+            android:id="@+id/title_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/status">
+
+            <ImageView
+                android:id="@+id/drawer_menu_iv"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+
+                android:paddingBottom="6dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/icon_drawlayout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingTop="5dp"
+                android:text="个人中心"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/self_head"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_below="@+id/title_rl"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/icon_defin_head" />
+    <LinearLayout
+        android:id="@+id/self_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="@color/white"
+        android:layout_below="@+id/self_title_back"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="微信公众号"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="18510605543"
+                android:textColor="#858585"
+                android:textSize="10sp" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="华证万联官网"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:src="@drawable/icon_right"
+                android:layout_marginRight="15dp"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline"
+            />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_sigin_out"
+        android:layout_below="@+id/self_list"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        />
+
+</RelativeLayout>

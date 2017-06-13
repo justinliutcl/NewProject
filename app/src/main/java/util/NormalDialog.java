@@ -2,6 +2,8 @@ package util;
 
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.widget.TextView;
 
 import com.justin.hzwl.myhzwl.R;
 
@@ -10,9 +12,20 @@ import com.justin.hzwl.myhzwl.R;
  */
 
 public class NormalDialog {
-    public static void showSimpleDialog(Context context, int id){
+    public static void showSimpleDialog(Context context, int id,String text){
         AlertDialog builder = new AlertDialog.Builder(context, R.style.Theme_AppCompat_Dialog).create();
         builder.show();
-        builder.setContentView(id);
+        View view = View.inflate(context,id,null);
+        TextView t = (TextView) view.findViewById(R.id.text);
+        t.setText(text);
+        builder.setContentView(view);
+    }
+    public static void showSimpleDialog(Context context, String text){
+        AlertDialog builder = new AlertDialog.Builder(context, R.style.Theme_AppCompat_Dialog).create();
+        builder.show();
+        View view = View.inflate(context,R.layout.dialog_success,null);
+        TextView t = (TextView) view.findViewById(R.id.text);
+        t.setText(text);
+        builder.setContentView(view);
     }
 }
