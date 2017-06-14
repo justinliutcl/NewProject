@@ -1,18 +1,17 @@
-package activity.mainView;
+package com.justin.hzwl.myhzwl.activity.mainView.loginView;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.justin.hzwl.myhzwl.R;
 
-import activity.BaseActivity;
+import com.justin.hzwl.myhzwl.activity.BaseActivity;
 
-public class NewsActivity extends BaseActivity implements View.OnClickListener{
+public class RegistActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
     }
 
     @Override

@@ -1,13 +1,12 @@
-package activity.mainView.loginView;
+package com.justin.hzwl.myhzwl.activity.mainView.drawerView;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.justin.hzwl.myhzwl.R;
+import com.justin.hzwl.myhzwl.activity.BaseActivity;
 
-import activity.BaseActivity;
-
-public class RegistActivity extends BaseActivity implements View.OnClickListener{
+public class WalletActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

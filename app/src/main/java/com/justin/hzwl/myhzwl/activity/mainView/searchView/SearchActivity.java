@@ -1,13 +1,12 @@
-package activity.mainView.drawerView;
+package com.justin.hzwl.myhzwl.activity.mainView.searchView;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.justin.hzwl.myhzwl.R;
+import com.justin.hzwl.myhzwl.activity.BaseActivity;
 
-import activity.BaseActivity;
-
-public class WalletActivity extends BaseActivity implements View.OnClickListener{
+public class SearchActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

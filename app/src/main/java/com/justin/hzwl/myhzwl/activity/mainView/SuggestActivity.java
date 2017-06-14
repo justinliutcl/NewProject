@@ -1,13 +1,13 @@
-package activity.mainView.loginView;
+package com.justin.hzwl.myhzwl.activity.mainView;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.justin.hzwl.myhzwl.R;
+import com.justin.hzwl.myhzwl.activity.BaseActivity;
 
-import activity.BaseActivity;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener{
+public class SuggestActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

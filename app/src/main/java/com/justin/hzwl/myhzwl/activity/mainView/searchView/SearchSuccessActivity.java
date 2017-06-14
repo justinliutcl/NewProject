@@ -1,11 +1,10 @@
-package activity.mainView.searchView;
+package com.justin.hzwl.myhzwl.activity.mainView.searchView;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.justin.hzwl.myhzwl.R;
-
-import activity.BaseActivity;
+import com.justin.hzwl.myhzwl.activity.BaseActivity;
 
 public class SearchSuccessActivity extends BaseActivity implements View.OnClickListener{
     @Override

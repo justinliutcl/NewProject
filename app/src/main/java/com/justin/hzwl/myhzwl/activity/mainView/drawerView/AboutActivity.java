@@ -1,10 +1,11 @@
-package com.justin.hzwl.myhzwl.activity;
+package com.justin.hzwl.myhzwl.activity.mainView.drawerView;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.justin.hzwl.myhzwl.R;
+import com.justin.hzwl.myhzwl.activity.BaseActivity;
 
 import util.NormalDialog;
 
@@ -13,7 +14,7 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feedback);
+        setContentView(R.layout.activity_about);
     }
 
     @Override
