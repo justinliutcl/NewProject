@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BackView">
+        <attr name="text" format="reference|string" />
+        <attr name="right_text" format="reference|string" />
+        <attr name="right_text_size" format="dimension" />
+        <attr name="right_text_width" format="dimension" />
+        <attr name="right_text_visible">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="icon_visible">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="right_wrapper_layout" format="reference" />
+    </declare-styleable>
+
+</resources>
