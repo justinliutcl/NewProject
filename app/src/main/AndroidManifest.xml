@@ -17,6 +17,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.FeedbackActivity"></activity>
+        <activity android:name=".activity.mainView.drawerView.AboutActivity"></activity>
+        <activity android:name=".activity.mainView.drawerView.MyselfActivity"></activity>
+        <activity android:name=".activity.mainView.drawerView.WalletActivity"></activity>
+        <activity android:name=".activity.mainView.loginView.LoginActivity"></activity>
+        <activity android:name=".activity.mainView.searchView.SearchActivity"></activity>
+        <activity android:name=".activity.mainView.searchView.SearchSuccessActivity"></activity>
+        <activity android:name=".activity.mainView.NewsActivity"></activity>
+        <activity android:name=".activity.mainView.SuggestActivity"></activity>
+
     </application>
 
 </manifest>

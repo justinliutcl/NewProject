@@ -1,5 +1,6 @@
 package com.justin.hzwl.myhzwl.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
@@ -10,11 +11,13 @@ import android.widget.LinearLayout;
 
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
+import com.justin.hzwl.myhzwl.activity.mainView.drawerView.AboutActivity;
+import com.justin.hzwl.myhzwl.activity.mainView.drawerView.WalletActivity;
 
 public class MainActivity extends BaseActivity {
     ImageView mDrawerMenu,mAlermMenu,mSearch;
     DrawerLayout drawerLayout;
-    LinearLayout feedback;
+    LinearLayout feedback,qb,history,about;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,9 @@ public class MainActivity extends BaseActivity {
         mSearch = (ImageView) findViewById(R.id.sarch_iv);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         feedback = (LinearLayout) findViewById(R.id.feedback);
+        qb = (LinearLayout) findViewById(R.id.qb_ll);
+        history = (LinearLayout) findViewById(R.id.history_ll);
+        about = (LinearLayout) findViewById(R.id.about_ll);
     }
 
     @Override
@@ -50,10 +56,22 @@ public class MainActivity extends BaseActivity {
             case R.id.sarch_iv:
 
                 break;
+            case R.id.qb_ll:
+                jumpTo(this,WalletActivity.class);
+                break;
+            case R.id.history_ll:
+                jumpTo(this,FeedbackActivity.class);
+                break;
+            case R.id.about_ll:
+                jumpTo(this,AboutActivity.class);
+                break;
             case R.id.feedback:
-                Intent intent = new Intent(this,FeedbackActivity.class);
-                startActivity(intent);
+                jumpTo(this,FeedbackActivity.class);
                 break;
         }
+    }
+    public void jumpTo(Context context,Class cls){
+        Intent intent = new Intent(context,cls);
+        startActivity(intent);
     }
 }

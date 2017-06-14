@@ -6,9 +6,9 @@
     android:orientation="vertical"
     android:background="@color/gray_black">
     <views.BackView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/back_view_height"
-        app:text=""
+        app:text="关于我们"
         />
 
     <LinearLayout
