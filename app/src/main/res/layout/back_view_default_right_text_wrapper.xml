@@ -9,9 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingRight="16dp"
+        android:paddingTop="3dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="14sp"/>
+        android:textSize="12sp"/>
 
 </merge>

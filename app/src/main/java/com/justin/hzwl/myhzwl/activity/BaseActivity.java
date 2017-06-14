@@ -1,5 +1,8 @@
 package com.justin.hzwl.myhzwl.activity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
@@ -10,11 +13,16 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.justin.hzwl.myhzwl.R;
+
+import views.BackView;
+
 /**
  * Created by ASUS on 2017/6/11.
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+    public BackView mBackView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +42,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onResume() {
         super.onResume();
+        mBackView = (BackView) findViewById(R.id.back);
+        if(mBackView!=null){
+            mBackView.setTitleBackClickedListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BaseActivity.this.finish();
+                }
+            });
+        }
         init();
         setListener();
     }
@@ -41,4 +58,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public abstract void init();
 
     public abstract void setListener();
+
+    public void jumpTo(Context context, Class cls){
+        Intent intent = new Intent(context,cls);
+        startActivity(intent);
+    }
+
+    public void jumpToFinish(Activity context, Class cls){
+        Intent intent = new Intent(context,cls);
+        startActivity(intent);
+        context.finish();
+    }
 }

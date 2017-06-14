@@ -140,6 +140,10 @@ public class BackView extends RelativeLayout {
         return mRightWrapper;
     }
 
+    public void setTitleRightWrapperClickedListener(OnClickListener listener) {
+        mRightWrapper.setOnClickListener(listener);
+    }
+
     public TextView getTitleTextView() {
         return mTitleTextView;
     }

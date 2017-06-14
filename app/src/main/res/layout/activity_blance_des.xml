@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_black"
+    android:orientation="vertical">
+    <views.BackView
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/back_view_height"
+        app:text="余额明细"
+        android:background="@color/black"
+        app:icon_visible="visible"
+        />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/purple"
+        app:tabIndicatorHeight="3dp"
+        app:tabTextColor="@color/black"
+        app:tabSelectedTextColor="@color/purple"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/recharge_text_color"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+</LinearLayout>

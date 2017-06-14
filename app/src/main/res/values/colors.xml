@@ -4,4 +4,7 @@
     <color name="black">#000000</color>
     <color name="gray_black">#f7f8fc</color>
     <color name="grayline">#ddd</color>
+    <color name="recharge_text_color">#858585</color>
+    <color name="purple">#805bff</color>
+    <color name="purple_text">#906eff</color>
 </resources>

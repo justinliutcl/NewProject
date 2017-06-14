@@ -42,6 +42,9 @@ public class MainActivity extends BaseActivity {
         mAlermMenu.setOnClickListener(this);
         mSearch.setOnClickListener(this);
         feedback.setOnClickListener(this);
+        qb.setOnClickListener(this);
+        history.setOnClickListener(this);
+        about.setOnClickListener(this);
     }
 
     @Override
@@ -70,8 +73,5 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
-    public void jumpTo(Context context,Class cls){
-        Intent intent = new Intent(context,cls);
-        startActivity(intent);
-    }
+
 }

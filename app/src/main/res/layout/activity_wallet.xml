@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-    
-</RelativeLayout>
+    android:orientation="vertical">
+    <views.BackView
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/back_view_height"
+        app:text="关于我们"
+        android:background="@color/black"
+        app:icon_visible="visible"
+        app:right_text_visible="visible"
+        app:right_text="余额明细"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="11dp"
+        android:background="@drawable/background_balance"
+        android:layout_marginTop="25dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100.00"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_marginTop="30dp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的余额（元）"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            />
+
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/rechange"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/icon_recharge"
+        android:layout_marginTop="40dp"
+        />
+</LinearLayout>

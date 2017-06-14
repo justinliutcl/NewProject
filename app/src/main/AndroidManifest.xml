@@ -25,6 +25,8 @@
         <activity android:name=".activity.mainView.searchView.SearchSuccessActivity"></activity>
         <activity android:name=".activity.mainView.NewsActivity"></activity>
         <activity android:name=".activity.mainView.SuggestActivity"></activity>
+        <activity android:name=".activity.mainView.blanceView.BlancedesActivity"></activity>
+        <activity android:name=".activity.mainView.blanceView.RechangeActivity"></activity>
 
     </application>
 
