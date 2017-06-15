@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
+
+        </activity>
+        <activity android:name=".activity.mainView.loginView.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,13 +25,15 @@
         <activity android:name=".activity.mainView.drawerView.AboutActivity"/>
         <activity android:name=".activity.mainView.drawerView.MyselfActivity"/>
         <activity android:name=".activity.mainView.drawerView.WalletActivity"/>
-        <activity android:name=".activity.mainView.loginView.LoginActivity"/>
+
         <activity android:name=".activity.mainView.searchView.SearchActivity"/>
         <activity android:name=".activity.mainView.searchView.SearchSuccessActivity"/>
         <activity android:name=".activity.mainView.NewsActivity"/>
         <activity android:name=".activity.mainView.SuggestActivity"/>
         <activity android:name=".activity.mainView.blanceView.BlancedesActivity"/>
         <activity android:name=".activity.mainView.blanceView.RechangeActivity"/>
+        <activity android:name=".activity.mainView.loginView.RegistActivity"/>
+        <activity android:name=".activity.mainView.loginView.ForgetActivity"/>
 
     </application>
 

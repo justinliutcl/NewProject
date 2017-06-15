@@ -7,4 +7,5 @@
     <color name="recharge_text_color">#858585</color>
     <color name="purple">#805bff</color>
     <color name="purple_text">#906eff</color>
+    <color name="purple_login_text">#9b6bff</color>
 </resources>

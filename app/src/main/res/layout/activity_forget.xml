@@ -18,7 +18,7 @@
         android:layout_height="@dimen/back_view_height"
         android:background="@android:color/transparent"
         app:icon_visible="visible"
-        app:text="注册" />
+        app:text="密码重置" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -108,7 +108,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="5dp"
                     android:text="发送"
-                    android:textColor="@color/purple_login_text" />
+                    android:textColor="#bbb" />
             </LinearLayout>
 
             <TextView
@@ -136,7 +136,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@color/white"
-                    android:hint="请输入密码"
+                    android:hint="请输入6-12位数字或字母密码"
                     android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="#bbb"
@@ -163,5 +163,4 @@
                 android:src="@drawable/icon_submit" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
 </RelativeLayout>

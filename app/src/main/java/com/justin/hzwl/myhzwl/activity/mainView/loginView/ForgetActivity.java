@@ -2,16 +2,19 @@ package com.justin.hzwl.myhzwl.activity.mainView.loginView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.justin.hzwl.myhzwl.R;
-
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
 
-public class RegistActivity extends BaseActivity {
+public class ForgetActivity extends BaseActivity {
+    ImageView login;
+    TextView regist,forget;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regist);
+        setContentView(R.layout.activity_forget);
     }
 
     @Override
@@ -21,6 +24,7 @@ public class RegistActivity extends BaseActivity {
 
     @Override
     public void setListener() {
+
     }
 
     @Override
