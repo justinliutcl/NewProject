@@ -10,16 +10,32 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import android.util.Log;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
  * Created by Justinliu on 2017/6/15.
  */
 
 public class HttpUtil {
+    private OkHttpClient client;
     private static class HttpUtilBean {
         public static HttpUtil util = new HttpUtil();
     }
 
     private HttpUtil() {
+        client = new OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .build();
     }
 
     public static HttpUtil getHttpUtilInstance() {
