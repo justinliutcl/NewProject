@@ -2,7 +2,6 @@ package com.justin.hzwl.myhzwl.activity.mainView.drawerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
