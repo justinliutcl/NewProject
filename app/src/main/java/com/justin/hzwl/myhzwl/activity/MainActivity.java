@@ -14,6 +14,8 @@ import com.justin.hzwl.myhzwl.activity.BaseActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.drawerView.AboutActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.drawerView.WalletActivity;
 
+import util.HttpUtil;
+
 public class MainActivity extends BaseActivity {
     ImageView mDrawerMenu,mAlermMenu,mSearch;
     DrawerLayout drawerLayout;
@@ -57,7 +59,7 @@ public class MainActivity extends BaseActivity {
 
                 break;
             case R.id.sarch_iv:
-
+                HttpUtil.getHttpUtilInstance().getExecute("http://www.baidu.com");
                 break;
             case R.id.qb_ll:
                 jumpTo(this,WalletActivity.class);

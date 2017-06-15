@@ -120,6 +120,8 @@
     </LinearLayout>
 
     <views.LineEditText
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:gravity="top"
@@ -128,6 +130,7 @@
         android:lines="4"
         android:maxLines="4"
         android:textColorHint="#cfcfcf"
+        android:layout_marginTop="15dp"
         android:textSize="14sp" />
 
     <TextView
@@ -137,6 +140,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/feedback_button_background"
         android:gravity="center"
+        android:layout_marginTop="20dp"
         android:text="提交"
         android:textColor="@color/white" />
 </LinearLayout>

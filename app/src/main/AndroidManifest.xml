@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.justin.hzwl.myhzwl">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,17 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.FeedbackActivity"></activity>
-        <activity android:name=".activity.mainView.drawerView.AboutActivity"></activity>
-        <activity android:name=".activity.mainView.drawerView.MyselfActivity"></activity>
-        <activity android:name=".activity.mainView.drawerView.WalletActivity"></activity>
-        <activity android:name=".activity.mainView.loginView.LoginActivity"></activity>
-        <activity android:name=".activity.mainView.searchView.SearchActivity"></activity>
-        <activity android:name=".activity.mainView.searchView.SearchSuccessActivity"></activity>
-        <activity android:name=".activity.mainView.NewsActivity"></activity>
-        <activity android:name=".activity.mainView.SuggestActivity"></activity>
-        <activity android:name=".activity.mainView.blanceView.BlancedesActivity"></activity>
-        <activity android:name=".activity.mainView.blanceView.RechangeActivity"></activity>
+        <activity android:name=".activity.FeedbackActivity"/>
+        <activity android:name=".activity.mainView.drawerView.AboutActivity"/>
+        <activity android:name=".activity.mainView.drawerView.MyselfActivity"/>
+        <activity android:name=".activity.mainView.drawerView.WalletActivity"/>
+        <activity android:name=".activity.mainView.loginView.LoginActivity"/>
+        <activity android:name=".activity.mainView.searchView.SearchActivity"/>
+        <activity android:name=".activity.mainView.searchView.SearchSuccessActivity"/>
+        <activity android:name=".activity.mainView.NewsActivity"/>
+        <activity android:name=".activity.mainView.SuggestActivity"/>
+        <activity android:name=".activity.mainView.blanceView.BlancedesActivity"/>
+        <activity android:name=".activity.mainView.blanceView.RechangeActivity"/>
 
     </application>
 
