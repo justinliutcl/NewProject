@@ -37,7 +37,7 @@ public class LoginActivity extends BaseActivity{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login:
-                jumpTo(this,MainActivity.class);
+                jumpToFinish(this,MainActivity.class);
                 break;
             case R.id.regist:
                 jumpTo(this,RegistActivity.class);

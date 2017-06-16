@@ -32,8 +32,8 @@
            android:layout_below="@+id/status"
            android:src="@drawable/icon_drawlayout"
            android:paddingBottom="6dp"
-           android:paddingTop="5dp"
-           android:paddingLeft="8dp"
+           android:paddingTop="7dp"
+           android:paddingLeft="11dp"
            />
         <ImageView
             android:id="@+id/alerm_menu_iv"
