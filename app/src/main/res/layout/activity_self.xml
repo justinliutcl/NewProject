@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/self_title_back"
             android:layout_width="match_parent"
-            android:layout_height="206dp"
+            android:layout_height="216dp"
             android:background="@drawable/icon_self_back"
             android:scaleType="fitXY" />
 
@@ -26,14 +26,13 @@
             android:layout_below="@+id/status">
 
             <ImageView
-                android:id="@+id/drawer_menu_iv"
+                android:id="@+id/back_iv"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-
-                android:paddingBottom="6dp"
+                android:paddingBottom="9dp"
                 android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                android:src="@drawable/icon_drawlayout" />
+                android:paddingTop="9dp"
+                android:src="@drawable/arrow_back" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,7 +50,7 @@
             android:layout_height="82dp"
             android:layout_below="@+id/title_rl"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/icon_defin_head" />
     <LinearLayout
         android:id="@+id/self_list"
@@ -66,7 +65,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -85,7 +85,7 @@
                 android:layout_marginRight="15dp"
                 android:text="18510605543"
                 android:textColor="#858585"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
@@ -98,6 +98,8 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="@color/white"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
             >
             <TextView
                 android:layout_width="0dp"

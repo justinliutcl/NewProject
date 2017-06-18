@@ -3,6 +3,7 @@
     package="com.justin.hzwl.myhzwl">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.NFC" />
 
     <application
         android:allowBackup="true"
@@ -34,6 +35,9 @@
         <activity android:name=".activity.mainView.blanceView.RechangeActivity"/>
         <activity android:name=".activity.mainView.loginView.RegistActivity"/>
         <activity android:name=".activity.mainView.loginView.ForgetActivity"/>
+        <activity android:name=".activity.mainView.blanceView.RuleActivity"/>
+        <activity android:name=".activity.mainView.drawerView.HistoryActivity"/>
+        <activity android:name=".activity.mainView.searchView.HelpActivity"/>
 
     </application>
 

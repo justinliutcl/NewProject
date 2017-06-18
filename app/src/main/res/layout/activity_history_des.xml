@@ -10,9 +10,10 @@
         android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="@dimen/back_view_height"
-        app:text="余额明细"
+        app:text="认证记录"
         android:background="@color/black"
         app:icon_visible="visible"
+        app:right_text="计费规则"
         />
     <android.support.design.widget.TabLayout
         android:id="@+id/tab"

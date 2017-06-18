@@ -58,8 +58,8 @@
         android:background="@drawable/back_main_center"
         >
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:src="@drawable/icon_main_center"
             android:layout_centerInParent="true"
             />
@@ -87,9 +87,10 @@
         />
     <ImageView
         android:id="@+id/sarch_iv"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
         android:src="@drawable/icon_sarch"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
@@ -105,12 +106,11 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="23dp"
         android:gravity="center_horizontal"
-        android:layout_marginTop="3dp"
         >
         <ImageView
             android:id="@+id/fankui_iv"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/icon_fankui"
 
             />
