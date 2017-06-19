@@ -48,6 +48,7 @@
         android:paddingTop="15dp">
 
         <TextView
+            android:id="@+id/no_nfc"
             android:layout_width="0dp"
             android:layout_height="31dp"
             android:layout_marginRight="18dp"
@@ -58,6 +59,7 @@
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/can_card"
             android:layout_width="0dp"
             android:layout_height="31dp"
             android:layout_weight="1"
@@ -78,6 +80,7 @@
         android:paddingTop="12dp">
 
         <TextView
+            android:id="@+id/more_safe"
             android:layout_width="0dp"
             android:layout_height="31dp"
             android:layout_marginRight="18dp"
@@ -88,6 +91,7 @@
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/too_low"
             android:layout_width="0dp"
             android:layout_height="31dp"
             android:layout_weight="1"

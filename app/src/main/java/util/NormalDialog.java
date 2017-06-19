@@ -20,6 +20,11 @@ public class NormalDialog {
         t.setText(text);
         builder.setContentView(view);
     }
+    public static void showSimpleDialog(Context context, View view){
+        AlertDialog builder = new AlertDialog.Builder(context, R.style.Theme_AppCompat_Dialog).create();
+        builder.show();
+        builder.setContentView(view);
+    }
     public static void showSimpleDialog(Context context, String text){
         AlertDialog builder = new AlertDialog.Builder(context, R.style.Theme_AppCompat_Dialog).create();
         builder.show();

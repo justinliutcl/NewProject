@@ -261,6 +261,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/alipay_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -284,10 +285,11 @@
                         android:textSize="14sp" />
 
                     <ImageView
+                        android:id="@+id/alipay_iv"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginRight="20dp"
-                        android:src="@drawable/icon_select" />
+                        android:background="@drawable/icon_select" />
                 </LinearLayout>
 
                 <TextView
@@ -296,6 +298,7 @@
                     android:background="#eee" />
 
                 <LinearLayout
+                    android:id="@+id/wechat_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -320,10 +323,11 @@
                         android:textSize="14sp" />
 
                     <ImageView
+                        android:id="@+id/wechat_iv"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginRight="20dp"
-                        android:src="@drawable/icon_select_nor" />
+                        android:background="@drawable/icon_select_nor" />
                 </LinearLayout>
             </LinearLayout>
 

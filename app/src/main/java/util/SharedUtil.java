@@ -9,9 +9,9 @@ import android.content.SharedPreferences;
 
 public class SharedUtil {
     private SharedPreferences sp;
-    private SharedUtil sharedUtil;
+    private static SharedUtil sharedUtil;
 
-    public SharedUtil getInstance(Context context) {
+    public static SharedUtil getInstance(Context context) {
         if (sharedUtil == null) {
             sharedUtil = new SharedUtil(context);
         }
@@ -24,13 +24,26 @@ public class SharedUtil {
         }
     }
 
-    public void setDate(Context context, String key, String value) {
+    public void setFirst(){
+        setDate(ContentKey.IS_FIRST,"true");
+    }
+
+    public boolean getFirst() {
+        String value = getData(ContentKey.IS_FIRST);
+        if (value != null) {
+            return Boolean.parseBoolean(value);
+        }
+        return false;
+    }
+
+
+    public void setDate(String key, String value) {
         SharedPreferences.Editor ed = sp.edit();
         ed.putString(key, value);
         ed.commit();
     }
 
-    public String getData(Context context, String key) {
+    public String getData(String key) {
         return sp.getString(key, null);
     }
 }

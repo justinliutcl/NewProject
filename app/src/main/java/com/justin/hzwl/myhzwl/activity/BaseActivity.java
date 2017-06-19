@@ -23,6 +23,8 @@ import views.BackView;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     public BackView mBackView;
+    private boolean isOnCreate;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,35 +39,39 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
         }
+        isOnCreate = true;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mBackView = (BackView) findViewById(R.id.back);
-        if(mBackView!=null){
-            mBackView.setTitleBackClickedListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    BaseActivity.this.finish();
-                }
-            });
+        if(isOnCreate){
+            isOnCreate = false;
+            mBackView = (BackView) findViewById(R.id.back);
+            if (mBackView != null) {
+                mBackView.setTitleBackClickedListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        BaseActivity.this.finish();
+                    }
+                });
+            }
+            init();
+            setListener();
         }
-        init();
-        setListener();
     }
 
     public abstract void init();
 
     public abstract void setListener();
 
-    public void jumpTo(Context context, Class cls){
-        Intent intent = new Intent(context,cls);
+    public void jumpTo(Context context, Class cls) {
+        Intent intent = new Intent(context, cls);
         startActivity(intent);
     }
 
-    public void jumpToFinish(Activity context, Class cls){
-        Intent intent = new Intent(context,cls);
+    public void jumpToFinish(Activity context, Class cls) {
+        Intent intent = new Intent(context, cls);
         startActivity(intent);
         context.finish();
     }
