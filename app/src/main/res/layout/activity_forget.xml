@@ -59,6 +59,7 @@
                     android:background="@color/white"
                     android:hint="请输入手机号码"
                     android:singleLine="true"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textColorHint="#bbb"
                     android:textSize="14sp" />
@@ -90,6 +91,7 @@
                     android:background="@color/white"
                     android:hint="请输入验证码"
                     android:singleLine="true"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textColorHint="#bbb"
                     android:textSize="14sp" />
@@ -135,6 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
+                    android:inputType="textPassword"
                     android:background="@color/white"
                     android:hint="请输入6-12位数字或字母密码"
                     android:singleLine="true"

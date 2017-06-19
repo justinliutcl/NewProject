@@ -59,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
+                    android:inputType="number"
                     android:singleLine="true"
                     android:background="@color/white"
                     android:hint="请输入手机号码"
@@ -92,8 +93,9 @@
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@color/white"
+                    android:inputType="textPassword"
                     android:singleLine="true"
-                    android:hint="请输入手机号码"
+                    android:hint="请输入密码"
                     android:textColor="@color/black"
                     android:textColorHint="#bbb"
                     android:textSize="14sp" />

@@ -33,7 +33,7 @@ public class SearchActivity extends BaseActivity{
 
                    }
                });
-               v.setDuration(1400);
+               v.setDuration(1700);
                v.setInterpolator(new AccelerateDecelerateInterpolator());
                v.setRepeatCount(ValueAnimator.INFINITE);
                v.start();

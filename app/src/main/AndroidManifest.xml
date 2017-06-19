@@ -38,6 +38,7 @@
         <activity android:name=".activity.mainView.blanceView.RuleActivity"/>
         <activity android:name=".activity.mainView.drawerView.HistoryActivity"/>
         <activity android:name=".activity.mainView.searchView.HelpActivity"/>
+        <activity android:name=".activity.mainView.loginView.AccreditActivity"/>
 
     </application>
 
