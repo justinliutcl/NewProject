@@ -36,18 +36,29 @@
             android:layout_marginRight="30dp"
             />
             <ImageView
+                android:id="@+id/phone"
                 android:layout_width="185dp"
-                android:layout_height="170dp"
+                android:layout_height="match_parent"
                 android:src="@drawable/icon_idcard"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingTop="80dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_search_phone"
+                android:layout_marginTop="50dp"
                 android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="190dp"
                 />
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            android:layout_weight="2.5"
+            android:layout_weight="2"
             android:gravity="center"
             >
             <TextView
@@ -78,6 +89,7 @@
         android:paddingBottom="10dp"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/eid_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -85,6 +97,7 @@
             android:gravity="center"
             >
             <ImageView
+                android:id="@+id/eid_iv"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                     android:src="@drawable/icon_eid_card_nor"
@@ -99,26 +112,29 @@
                 />
 
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/idcard_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center"
-            >
+            android:orientation="vertical">
+
             <ImageView
+                android:id="@+id/idcard_iv"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/icon_id_card_nor"
-                />
+                android:src="@drawable/icon_id_card_nor" />
+
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="二代身份证"
                 android:textColor="#b9b9b9"
-                android:textSize="12sp"
-                android:layout_marginTop="5dp"
-                />
+                android:textSize="12sp" />
 
         </LinearLayout>
     </LinearLayout>
