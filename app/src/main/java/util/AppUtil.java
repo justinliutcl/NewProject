@@ -1,6 +1,11 @@
 package util;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.provider.Settings;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -39,6 +44,13 @@ public class AppUtil {
         }
         return null;
     }
+    @SuppressLint("InlinedApi")
+    protected void openNFCSettings(Activity context) {
 
+        Intent intent = new Intent(Settings.ACTION_NFC_SETTINGS);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+
+    }
 
 }
