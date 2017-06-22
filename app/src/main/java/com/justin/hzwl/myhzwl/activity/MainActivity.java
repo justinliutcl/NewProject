@@ -2,6 +2,8 @@ package com.justin.hzwl.myhzwl.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
+import android.nfc.tech.IsoDep;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,6 +11,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.eidlink.sdk.EidCard;
+import com.eidlink.sdk.EidCardException;
+import com.eidlink.sdk.EidCardFactory;
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.drawerView.AboutActivity;
@@ -20,6 +25,8 @@ import com.justin.hzwl.myhzwl.activity.mainView.searchView.SearchActivity;
 import util.HttpUtil;
 import util.NfcUtils;
 import util.NormalDialog;
+
+import static android.nfc.NfcAdapter.EXTRA_TAG;
 
 public class MainActivity extends BaseActivity {
     ImageView mDrawerMenu,mAlermMenu,mSearch,heard;

@@ -1,14 +1,31 @@
 package com.justin.hzwl.myhzwl.activity.nfcView;
 
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.IsoDep;
+import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Base64;
 import android.widget.TextView;
 
 import com.eidlink.impl.EidLinkSEImpl;
+import com.eidlink.sdk.EidCard;
+import com.eidlink.sdk.EidCardException;
+import com.eidlink.sdk.EidCardFactory;
 import com.eidlink.sdk.EidLinkSE;
+import com.eidlink.sdk.utils.Utils;
 import com.justin.hzwl.myhzwl.R;
+
+import org.json.JSONObject;
+
+import java.util.UUID;
+
+import static android.nfc.NfcAdapter.EXTRA_TAG;
 
 /**
  * Created by ASUS on 2017/6/21.
@@ -63,6 +80,9 @@ public class NfcActivity extends BaseEidSupportActivity {
 
     private EidLinkSE eid;
     private Intent inintent;
+    PendingIntent pi;
+    IntentFilter tagDetected;
+    NfcAdapter adapterNFC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,13 +90,36 @@ public class NfcActivity extends BaseEidSupportActivity {
         tex = (TextView) this.findViewById(R.id.tex);
         eid = EidLinkSEImpl.newInstance(mHandler, this, "0000000");
         eid.setSEInfo(TerminalCert,TerminalPrikey);
+
+        setNFC();
+    }
+
+    private void setNFC() {
+        adapterNFC = NfcAdapter.getDefaultAdapter(getApplicationContext());
+        pi = PendingIntent.getActivity(this, 0, new Intent(this, getClass())
+                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+        // 新建IntentFilter，使用的是第二种的过滤机制
+        tagDetected = new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED);
+        tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapterNFC.enableForegroundDispatch(this, pi,
+                new IntentFilter[] { tagDetected }, null);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
 //		super.onNewIntent(intent);
-        inintent=intent;
-        mHandler.sendEmptyMessageDelayed(MESSAGE_VALID_NFCBUTTON, 0);
+        if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())) {
+            initNFC();
+        }else {
+            inintent=intent;
+            mHandler.sendEmptyMessageDelayed(MESSAGE_VALID_NFCBUTTON, 0);
+        }
     }
 
     public static final int MESSAGE_VALID_NFCSTART=26;
@@ -118,4 +161,91 @@ public class NfcActivity extends BaseEidSupportActivity {
             }
         }
     };
+
+
+    private void initNFC(){
+        //NFC获取IsoDep
+        Tag tag = (Tag) getIntent().getParcelableExtra(EXTRA_TAG);
+        IsoDep isoDep = IsoDep.get(tag);
+
+        //获取EidCard
+        try {
+            EidCard eidCard = EidCardFactory.getEidCardInstanceForNfc(isoDep);
+            tex.setText("   gogogo      "+mac(eidCard).toString());
+        } catch (EidCardException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public JSONObject mac(EidCard eidCard) throws Exception {
+        JSONObject reqJson = null;
+
+        if (!eidCard.isEidCard()) {
+            throw new EidCardException(100, "");
+        }
+        String biz_sequence_id = UUID.randomUUID().toString();
+        String data_to_sign = Utils.getBizTime() + ":" + Utils.getRandom16Number() + ":" + biz_sequence_id;
+        byte[] data_to_sign_bs = data_to_sign.getBytes("UTF-8");
+
+        String idCarrier = eidCard.getCarrierId();
+        String eidCert = eidCard.getEidCertId();
+
+        byte[] eidSign = eidCard.mac(data_to_sign_bs, 10);
+
+        if (Utils.isAllNotNull(idCarrier) && eidSign != null) {
+            reqJson = new JSONObject();
+
+            reqJson.put("sequenceId", biz_sequence_id);
+//            reqJson.put("appId", GlobalConstant.IDSPID);
+            reqJson.put("idType", "01");
+            reqJson.put("idCarrier", idCarrier); // eid载体标识
+            reqJson.put("dataToSign", Base64.encodeToString(data_to_sign_bs, Base64.NO_WRAP));
+            reqJson.put("eidSign", Base64.encodeToString(eidSign, Base64.NO_WRAP));
+            reqJson.put("eidSignAlgorithm", "10");
+            reqJson.put("eidCertId", eidCert);// eid载体证书信息
+            reqJson.put("extension", "");
+        } else {
+            throw new Exception("参数为空");
+        }
+
+        return reqJson;
+    }
+
+    private  JSONObject sign(EidCard eidCard, String pin) throws Exception {
+        JSONObject reqJson = null;
+
+        if (!eidCard.isEidCard()) {
+            throw new EidCardException(100, "");
+        }
+
+        String biz_sequence_id = UUID.randomUUID().toString();
+        String data_to_sign = Utils.getBizTime() + ":" + Utils.getRandom16Number() + ":" + biz_sequence_id;
+        byte[] data_to_sign_bs = data_to_sign.getBytes("UTF-8");
+
+        String idCarrier = eidCard.getCarrierId();
+        String eidCert = eidCard.getEidCertId();
+        eidCard.verifyPIN(pin);
+
+        byte[] eidSign = eidCard.sign(pin, data_to_sign_bs, 20);
+        if (Utils.isAllNotNull(idCarrier, eidCert) && eidSign != null) {
+            reqJson = new JSONObject();
+
+            reqJson.put("sequenceId", biz_sequence_id);
+//            reqJson.put("appId", GlobalConstant.IDSPID);
+            reqJson.put("idType", "01");
+            reqJson.put("idCarrier", idCarrier);// eid载体标识
+            reqJson.put("dataToSign",Base64.encodeToString(data_to_sign_bs, Base64.NO_WRAP));
+            reqJson.put("eidSign", Base64.encodeToString(eidSign, Base64.NO_WRAP));
+            reqJson.put("eidSignAlgorithm", "20");
+            reqJson.put("eidCertId", eidCert);
+            reqJson.put("extension", "");
+        } else {
+            throw new Exception("参数为空");
+        }
+        return reqJson;
+    }
+
+
 }
