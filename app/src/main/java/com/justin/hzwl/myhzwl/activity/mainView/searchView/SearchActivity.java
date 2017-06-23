@@ -15,6 +15,7 @@ import android.nfc.tech.NfcV;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -44,7 +45,6 @@ public class SearchActivity extends BaseActivity{
     private static IntentFilter[] mFilters;
     private static String[][] mTechLists;
 
-    private TextView tex;
 
     public static final int MESSAGE_VALID_OTGBUTTON=15;
     public static final int MESSAGE_VALID_NFCBUTTON=16;
@@ -234,26 +234,30 @@ public class SearchActivity extends BaseActivity{
             switch (msg.what) {
                 case MESSAGE_VALID_NFCSTART:
                     Boolean enablenfcs=eid.EnableSystemNFCMessage();
-                    tex.setText("    NFC初始化失败     ");
+                    Log.i("asd","    NFC初始化失败     ");
                     break;
                 case SERVER_CANNOT_CONNECT:
-                    tex.setText("     没有连接到服务器      ");
+                    Log.i("asd","    没有连接到服务器     ");
+                    Log.i("asd","         ");
                     break;
                 case READ_CARD_START:
-                    tex.setText("      开始读卡 ");
+                    Log.i("asd","     开始读卡    ");
                     break;
                 case READ_CARD_PROGRESS:
                     int progress_value = (Integer) msg.obj;
-                    tex.setText("      正在读卡，请稍候...");
+                    Log.i("asd","   正在读卡，请稍候...    ");
+
+
                     break;
                 case READ_CARD_SUCCESS:
-                    tex.setText("      读卡成功        "+eid.getSalt());
+                    Log.i("asd","  读卡成功     "+eid.getSalt());
                     break;
                 case READ_PHOTO_SUCESS:
                     break;
                 case READ_CARD_FAILED:
                     int error=msg.arg1;
-                    tex.setText("   error      "+error);
+                    Log.i("asd","  error     "+error);
+
                     break;
                 case MESSAGE_VALID_BTBUTTON:
                     break;

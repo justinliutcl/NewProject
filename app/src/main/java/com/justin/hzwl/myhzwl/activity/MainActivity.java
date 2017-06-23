@@ -16,6 +16,7 @@ import com.eidlink.sdk.EidCardException;
 import com.eidlink.sdk.EidCardFactory;
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
+import com.justin.hzwl.myhzwl.activity.mainView.NewsActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.drawerView.AboutActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.drawerView.HistoryActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.drawerView.MyselfActivity;
@@ -83,7 +84,7 @@ public class MainActivity extends BaseActivity {
                 drawerLayout.openDrawer(Gravity.LEFT);
                 break;
             case R.id.alerm_menu_iv:
-
+                jumpTo(this,NewsActivity.class);
                 break;
             case R.id.sarch_iv:
                 jumpTo(this,SearchActivity.class);
