@@ -2,7 +2,13 @@ package util;
 
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -32,11 +38,30 @@ public class HttpUtil {
         return HttpUtilBean.util;
     }
 
+    private static String mapToString(Map<String,String> map){
+        Set<String> keySet = map.keySet();
+        Iterator<String> iterator = keySet.iterator();
+        JSONObject jsonObject = new JSONObject();
+
+        while (iterator.hasNext()){
+            String key = iterator.next();
+            String value = map.get(key);
+            try {
+                jsonObject.put(key,value);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return jsonObject.toString();
+    }
+
     public void getExecute(String url){
-        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)
                 .method("GET",null)
+                .addHeader("Content-Type","application/json")
+                .addHeader("charset","UTF-8")
+                .addHeader("idsp-protocol-version","2.0.0")
                 .build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {

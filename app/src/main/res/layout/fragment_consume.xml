@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
 
     <LinearLayout
         android:id="@+id/empty_layout"
@@ -25,4 +27,21 @@
             android:textColor="@color/recharge_text_color"
             android:textSize="13sp" />
     </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/datalist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/nomore_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/datalist"
+        android:text="没有更多"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/recharge_text_color"
+        android:textSize="13dp"
+        android:gravity="center_horizontal"
+        />
 </RelativeLayout>

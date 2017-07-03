@@ -50,11 +50,11 @@ public class HistoryActivity extends BaseActivity {
 
     private void initData() {
         EidFragment consumeDesFragment = new EidFragment();
-        FaceFragment reChargeDesFragment = new FaceFragment();
         IDCardFragment idCardFragment = new IDCardFragment();
+        FaceFragment reChargeDesFragment = new FaceFragment();
         viewList.add(consumeDesFragment);
-        viewList.add(reChargeDesFragment);
         viewList.add(idCardFragment);
+        viewList.add(reChargeDesFragment);
         nameList.add("el认证");
         nameList.add("二代身份证认证");
         nameList.add("人脸识别认证");
