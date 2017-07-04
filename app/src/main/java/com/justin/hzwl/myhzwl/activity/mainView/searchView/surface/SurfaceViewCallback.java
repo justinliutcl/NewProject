@@ -1,4 +1,4 @@
-package com.frontcamera.zhousong.frontcamera;
+package com.justin.hzwl.myhzwl.activity.mainView.searchView.surface;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,7 +16,7 @@ import java.io.ByteArrayOutputStream;
  * Created by zhousong on 2016/9/19.
  * 相机界面SurfaceView的回调类
  */
-public final class SurfaceViewCallback implements android.view.SurfaceHolder.Callback, Camera.PreviewCallback {
+public final class SurfaceViewCallback implements SurfaceHolder.Callback, Camera.PreviewCallback {
 
     Context context;
     static final String TAG = "Camera";
