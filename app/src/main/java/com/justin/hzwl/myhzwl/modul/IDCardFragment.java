@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.justin.hzwl.myhzwl.Presenter.EidData;
 import com.justin.hzwl.myhzwl.Presenter.EidRecycleBaseAdapter;
+import com.justin.hzwl.myhzwl.Presenter.IDcardRecycleBaseAdapter;
 import com.justin.hzwl.myhzwl.R;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class IDCardFragment extends Fragment {
     View root;
     LinearLayout empty_layout;
     TextView noMore_tv;
-    EidRecycleBaseAdapter adapter;
+    IDcardRecycleBaseAdapter adapter;
     List<EidData> list;
     RecyclerView dataList;
     @Nullable
@@ -42,7 +43,7 @@ public class IDCardFragment extends Fragment {
         list.add(new EidData());
         list.add(new EidData());
         list.add(new EidData());
-        adapter = new EidRecycleBaseAdapter(getActivity(),list);
+        adapter = new IDcardRecycleBaseAdapter(getActivity(),list);
         dataList.setLayoutManager(new LinearLayoutManager(getActivity()));
         dataList.setAdapter(adapter);
         return root;

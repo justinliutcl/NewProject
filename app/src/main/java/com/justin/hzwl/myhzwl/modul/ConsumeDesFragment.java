@@ -18,7 +18,7 @@ public class ConsumeDesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_consume, container, false);
+        root = inflater.inflate(R.layout.fragment_recharge, container, false);
         return root;
     }
 }
