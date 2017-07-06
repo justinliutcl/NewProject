@@ -13,10 +13,10 @@ import com.justin.hzwl.myhzwl.activity.MainActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.searchView.surface.CameraSurfaceHolder;
 
 public class FaceActivity extends BaseActivity{
-    Context context = FaceActivity.this;
     SurfaceView surfaceView;
     CameraSurfaceHolder mCameraSurfaceHolder = new CameraSurfaceHolder();
     ImageView bitmap;
+    ImageView face_sure_iv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +25,16 @@ public class FaceActivity extends BaseActivity{
 
     @Override
     public void init() {
-        setContentView(R.layout.activity_main);
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
-        mCameraSurfaceHolder.setCameraSurfaceHolder(context,surfaceView);
+        mCameraSurfaceHolder.setCameraSurfaceHolder(this,surfaceView);
         bitmap = (ImageView) findViewById(R.id.bitmap);
-        surfaceView.setOnClickListener(new View.OnClickListener() {
+        face_sure_iv = (ImageView) findViewById(R.id.face_sure_iv);
+        face_sure_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap bit = mCameraSurfaceHolder.getBitmap();
-                bitmap.setImageBitmap(bit);
+//                Bitmap bit = mCameraSurfaceHolder.getBitmap();
+//                bitmap.setImageBitmap(bit);
+                SearchSuccessActivity.jump(FaceActivity.this,SearchSuccessActivity.FRAM_FACE);
             }
         });
     }

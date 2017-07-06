@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
 import com.justin.hzwl.myhzwl.activity.MainActivity;
+import com.justin.hzwl.myhzwl.activity.mainView.searchView.SearchSuccessActivity;
 
 public class AccreditActivity extends BaseActivity{
     ImageView login;
@@ -24,13 +25,14 @@ public class AccreditActivity extends BaseActivity{
 
     @Override
     public void setListener() {
+        login.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login:
-                jumpToFinish(this,MainActivity.class);
+                jumpToFinish(this,SearchSuccessActivity.class);
                 break;
         }
     }

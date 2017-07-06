@@ -8,9 +8,6 @@ import android.graphics.Bitmap;
 import android.provider.Settings;
 import android.util.Base64;
 
-import com.eidlink.sdk.EidCard;
-import com.eidlink.sdk.EidCardException;
-import com.eidlink.sdk.utils.Utils;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
@@ -61,73 +58,73 @@ public class AppUtil {
 
     }
 
-    public static JSONObject mac(EidCard eidCard) throws Exception {
-        JSONObject reqJson = null;
-
-        if (!eidCard.isEidCard()) {
-            throw new EidCardException(100, "");
-        }
-        String biz_sequence_id = UUID.randomUUID().toString();
-        String data_to_sign = Utils.getBizTime() + ":" + Utils.getRandom16Number() + ":" + biz_sequence_id;
-        byte[] data_to_sign_bs = data_to_sign.getBytes("UTF-8");
-
-        String idCarrier = eidCard.getCarrierId();
-        String eidCert = eidCard.getEidCertId();
-
-        byte[] eidSign = eidCard.mac(data_to_sign_bs, 10);
-
-        if (Utils.isAllNotNull(idCarrier) && eidSign != null) {
-            reqJson = new JSONObject();
-
-            reqJson.put("sequenceId", biz_sequence_id);
-            reqJson.put("appId", ContentKey.APP_ID);
-            reqJson.put("idType", "01");
-            reqJson.put("idCarrier", idCarrier); // eid载体标识
-            reqJson.put("dataToSign", Base64.encodeToString(data_to_sign_bs, Base64.NO_WRAP));
-            reqJson.put("eidSign", Base64.encodeToString(eidSign, Base64.NO_WRAP));
-            reqJson.put("eidSignAlgorithm", "10");
-            reqJson.put("eidCertId", eidCert);// eid载体证书信息
-            reqJson.put("extension", "");
-        } else {
-            throw new Exception("参数为空");
-        }
-
-        return reqJson;
-    }
-
-    private static JSONObject sign(EidCard eidCard, String pin) throws Exception {
-        JSONObject reqJson = null;
-
-        if (!eidCard.isEidCard()) {
-            throw new EidCardException(100, "");
-        }
-
-        String biz_sequence_id = UUID.randomUUID().toString();
-        String data_to_sign = Utils.getBizTime() + ":" + Utils.getRandom16Number() + ":" + biz_sequence_id;
-        byte[] data_to_sign_bs = data_to_sign.getBytes("UTF-8");
-
-        String idCarrier = eidCard.getCarrierId();
-        String eidCert = eidCard.getEidCertId();
-        eidCard.verifyPIN(pin);
-
-        byte[] eidSign = eidCard.sign(pin, data_to_sign_bs, 20);
-        if (Utils.isAllNotNull(idCarrier, eidCert) && eidSign != null) {
-            reqJson = new JSONObject();
-
-            reqJson.put("sequenceId", biz_sequence_id);
-            reqJson.put("appId", ContentKey.APP_ID);
-            reqJson.put("idType", "01");
-            reqJson.put("idCarrier", idCarrier);// eid载体标识
-            reqJson.put("dataToSign",Base64.encodeToString(data_to_sign_bs, Base64.NO_WRAP));
-            reqJson.put("eidSign", Base64.encodeToString(eidSign, Base64.NO_WRAP));
-            reqJson.put("eidSignAlgorithm", "20");
-            reqJson.put("eidCertId", eidCert);
-            reqJson.put("extension", "");
-        } else {
-            throw new Exception("参数为空");
-        }
-        return reqJson;
-    }
+//    public static JSONObject mac(EidCard eidCard) throws Exception {
+//        JSONObject reqJson = null;
+//
+//        if (!eidCard.isEidCard()) {
+//            throw new EidCardException(100, "");
+//        }
+//        String biz_sequence_id = UUID.randomUUID().toString();
+//        String data_to_sign = Utils.getBizTime() + ":" + Utils.getRandom16Number() + ":" + biz_sequence_id;
+//        byte[] data_to_sign_bs = data_to_sign.getBytes("UTF-8");
+//
+//        String idCarrier = eidCard.getCarrierId();
+//        String eidCert = eidCard.getEidCertId();
+//
+//        byte[] eidSign = eidCard.mac(data_to_sign_bs, 10);
+//
+//        if (Utils.isAllNotNull(idCarrier) && eidSign != null) {
+//            reqJson = new JSONObject();
+//
+//            reqJson.put("sequenceId", biz_sequence_id);
+//            reqJson.put("appId", ContentKey.APP_ID);
+//            reqJson.put("idType", "01");
+//            reqJson.put("idCarrier", idCarrier); // eid载体标识
+//            reqJson.put("dataToSign", Base64.encodeToString(data_to_sign_bs, Base64.NO_WRAP));
+//            reqJson.put("eidSign", Base64.encodeToString(eidSign, Base64.NO_WRAP));
+//            reqJson.put("eidSignAlgorithm", "10");
+//            reqJson.put("eidCertId", eidCert);// eid载体证书信息
+//            reqJson.put("extension", "");
+//        } else {
+//            throw new Exception("参数为空");
+//        }
+//
+//        return reqJson;
+//    }
+//
+//    private static JSONObject sign(EidCard eidCard, String pin) throws Exception {
+//        JSONObject reqJson = null;
+//
+//        if (!eidCard.isEidCard()) {
+//            throw new EidCardException(100, "");
+//        }
+//
+//        String biz_sequence_id = UUID.randomUUID().toString();
+//        String data_to_sign = Utils.getBizTime() + ":" + Utils.getRandom16Number() + ":" + biz_sequence_id;
+//        byte[] data_to_sign_bs = data_to_sign.getBytes("UTF-8");
+//
+//        String idCarrier = eidCard.getCarrierId();
+//        String eidCert = eidCard.getEidCertId();
+//        eidCard.verifyPIN(pin);
+//
+//        byte[] eidSign = eidCard.sign(pin, data_to_sign_bs, 20);
+//        if (Utils.isAllNotNull(idCarrier, eidCert) && eidSign != null) {
+//            reqJson = new JSONObject();
+//
+//            reqJson.put("sequenceId", biz_sequence_id);
+//            reqJson.put("appId", ContentKey.APP_ID);
+//            reqJson.put("idType", "01");
+//            reqJson.put("idCarrier", idCarrier);// eid载体标识
+//            reqJson.put("dataToSign",Base64.encodeToString(data_to_sign_bs, Base64.NO_WRAP));
+//            reqJson.put("eidSign", Base64.encodeToString(eidSign, Base64.NO_WRAP));
+//            reqJson.put("eidSignAlgorithm", "20");
+//            reqJson.put("eidCertId", eidCert);
+//            reqJson.put("extension", "");
+//        } else {
+//            throw new Exception("参数为空");
+//        }
+//        return reqJson;
+//    }
 
     public String Bitmap2StrByBase64(Bitmap bit){
         ByteArrayOutputStream bos=new ByteArrayOutputStream();

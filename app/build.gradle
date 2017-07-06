@@ -37,6 +37,4 @@ dependencies {
     compile 'com.android.support:cardview-v7:22.2.1'
     compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
     compile 'com.google.zxing:core:3.3.0'
-    compile files('libs/eidlink-idcard-v1.0.3.jar')
-    compile files('libs/eidlinksdk_for_android-2.1.0-SNAPSHOT.jar')
 }

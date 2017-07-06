@@ -13,20 +13,21 @@ import com.justin.hzwl.myhzwl.R;
 
 public class NormalDialog {
     public static void showSimpleDialog(Context context, int id,String text){
-        AlertDialog builder = new AlertDialog.Builder(context, R.style.Theme_AppCompat_Dialog).create();
+        AlertDialog builder = new AlertDialog.Builder(context, R.style.dialog).create();
         builder.show();
         View view = View.inflate(context,id,null);
         TextView t = (TextView) view.findViewById(R.id.text);
         t.setText(text);
         builder.setContentView(view);
     }
-    public static void showSimpleDialog(Context context, View view){
-        AlertDialog builder = new AlertDialog.Builder(context, R.style.Theme_AppCompat_Dialog).create();
+    public static AlertDialog showSimpleDialog(Context context, View view){
+        AlertDialog builder = new AlertDialog.Builder(context, R.style.dialog).create();
         builder.show();
         builder.setContentView(view);
+        return builder;
     }
     public static void showSimpleDialog(Context context, String text){
-        AlertDialog builder = new AlertDialog.Builder(context, R.style.Theme_AppCompat_Dialog).create();
+        AlertDialog builder = new AlertDialog.Builder(context, R.style.dialog).create();
         builder.show();
         View view = View.inflate(context,R.layout.dialog_success,null);
         TextView t = (TextView) view.findViewById(R.id.text);
