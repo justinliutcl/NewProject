@@ -3,113 +3,122 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
     <views.BackView
         android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="@dimen/back_view_height"
-        app:text="扫卡认证"
         android:background="@color/black"
         app:icon_visible="visible"
-        app:right_text_visible="visible"
         app:right_text="帮助"
-        />
+        app:right_text_visible="visible"
+        app:text="扫卡认证" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/back"
         android:layout_above="@+id/bottom"
-        android:orientation="vertical"
-        >
+        android:layout_below="@+id/back"
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7"
             android:layout_marginTop="15dp"
-            >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/icon_search_back"
-            android:scaleType="centerInside"
-            android:layout_marginRight="30dp"
-            />
+            android:layout_weight="7">
+
+            <ImageView
+                android:id="@+id/star_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_search_back" />
+
             <ImageView
                 android:id="@+id/phone"
                 android:layout_width="185dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/icon_eidcard"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:paddingTop="80dp"
-                />
+                android:src="@drawable/icon_eidcard" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/icon_search_phone"
-                android:layout_marginTop="50dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="190dp"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/icon_search_phone" />
+            <ImageView
+                android:id="@+id/no_idcard_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignBaseline="@+id/star_back"
+                android:background="@drawable/icon_not_idcard_long_short"
                 />
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
             android:layout_weight="2"
             android:gravity="center"
-            >
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#fdc542"
                 android:text="请贴卡"
-                />
+                android:textColor="#fdc542"
+                android:textSize="16sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#bb9fff"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="将eID卡置于手机背面NFC识别区域，\n保持接触直至认证结束"
-                />
+                android:textColor="#bb9fff"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/black"
-        android:paddingTop="10dp"
+        android:orientation="horizontal"
         android:paddingBottom="10dp"
-        android:layout_height="wrap_content">
+        android:paddingTop="10dp">
+
         <LinearLayout
             android:id="@+id/eid_layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center"
-            >
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/eid_iv"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                    android:src="@drawable/icon_eid_card_select"
-                />
+                android:src="@drawable/icon_eid_card_select" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="eID卡"
                 android:textColor="#b9b9b9"
-                android:textSize="12sp"
-                android:layout_marginTop="5dp"
-                />
+                android:textSize="12sp" />
 
         </LinearLayout>
 

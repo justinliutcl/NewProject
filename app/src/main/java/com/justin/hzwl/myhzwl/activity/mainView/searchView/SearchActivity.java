@@ -34,10 +34,10 @@ import com.justin.hzwl.myhzwl.activity.BaseActivity;
 import static android.nfc.NfcAdapter.EXTRA_TAG;
 
 public class SearchActivity extends BaseActivity{
-    ImageView phone,eid_iv,idCard_iv;
+    ImageView phone,eid_iv,idCard_iv,no_idcard_iv;
     ValueAnimator v;
     LinearLayout eid_layout,idCard_layout;
-    boolean isEIDCard;
+    boolean isEIDCard,isLongIdCard;
 
     // NFC parts
     protected static NfcAdapter mAdapter;
@@ -95,6 +95,7 @@ public class SearchActivity extends BaseActivity{
         eid_layout = (LinearLayout) findViewById(R.id.eid_layout);
         idCard_layout = (LinearLayout) findViewById(R.id.idcard_layout);
         eid_iv = (ImageView) findViewById(R.id.eid_iv);
+        no_idcard_iv = (ImageView) findViewById(R.id.no_idcard_iv);
         idCard_iv = (ImageView) findViewById(R.id.idcard_iv);
         eid = EidLinkSEImpl.newInstance(mHandler, this, "0000000");
         eid.setSEInfo(TerminalCert,TerminalPrikey);
@@ -156,6 +157,7 @@ public class SearchActivity extends BaseActivity{
     public void setListener() {
         eid_layout.setOnClickListener(this);
         idCard_layout.setOnClickListener(this);
+        no_idcard_iv.setOnClickListener(this);
     }
 
     @Override
@@ -172,6 +174,14 @@ public class SearchActivity extends BaseActivity{
                 eid_iv.setImageResource(R.drawable.icon_eid_card_nor);
                 idCard_iv.setImageResource(R.drawable.icon_id_card_select);
                 isEIDCard = false;
+                break;
+            case R.id.no_idcard_iv:
+                if(!isLongIdCard){
+                    isLongIdCard = true;
+                    no_idcard_iv.setBackgroundResource(R.drawable.icon_not_idcard_long_short);
+                }else{
+
+                }
                 break;
         }
     }
