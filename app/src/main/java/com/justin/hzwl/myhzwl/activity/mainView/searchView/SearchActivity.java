@@ -193,7 +193,7 @@ public class SearchActivity extends BaseActivity{
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
+                            jumpTo(SearchActivity.this,FaceActivity.class);
                         }
                     });
                     final AlertDialog dialog = NormalDialog.showSimpleDialog(this,view);

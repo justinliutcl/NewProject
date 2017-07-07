@@ -4,23 +4,119 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/background_search_success">
+    android:background="@drawable/background_search_success"
+    android:orientation="vertical">
+
     <views.BackView
         android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="@dimen/back_view_height"
-        app:text="扫描成功"
         android:background="@color/black"
         app:icon_visible="visible"
-        />
+        app:text="扫描成功" />
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/icon_search_success_big_logo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        />
-    
+        android:src="@drawable/icon_search_success_big_logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="恭喜您！"
+        android:textColor="@color/white"
+        android:textSize="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="6dp"
+        android:text="认证成功并已安全登录"
+        android:textColor="@color/white"
+        android:textSize="10dp" />
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_search_success_city"
+
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地区排名"
+                android:textSize="10sp"
+                android:textColor="@color/purple"
+                />
+            <TextView
+                android:id="@+id/safe_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="打败了80%的附近的人"
+                android:layout_marginTop="10dp"
+                android:textSize="10sp"
+                android:textColor="@color/purple"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_search_success_people" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="人群排名"
+                android:textSize="10sp"
+                android:textColor="@color/purple"
+                />
+            <TextView
+                android:id="@+id/safe_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您的账户安全指数90%"
+                android:layout_marginTop="10dp"
+                android:textSize="10sp"
+                android:textColor="@color/purple"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
 </LinearLayout>

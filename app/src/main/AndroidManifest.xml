@@ -4,19 +4,19 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.GuideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,25 +28,25 @@
         <activity android:name=".activity.mainView.loginView.LoginActivity">
 
         </activity>
-        <activity android:name=".activity.FeedbackActivity"/>
-        <activity android:name=".activity.mainView.drawerView.AboutActivity"/>
-        <activity android:name=".activity.mainView.drawerView.MyselfActivity"/>
-        <activity android:name=".activity.mainView.drawerView.WalletActivity"/>
+        <activity android:name=".activity.FeedbackActivity" />
+        <activity android:name=".activity.mainView.drawerView.AboutActivity" />
+        <activity android:name=".activity.mainView.drawerView.MyselfActivity" />
+        <activity android:name=".activity.mainView.drawerView.WalletActivity" />
 
-        <activity android:name=".activity.mainView.searchView.SearchActivity"/>
-        <activity android:name=".activity.mainView.searchView.SearchSuccessActivity"/>
-        <activity android:name=".activity.mainView.NewsActivity"/>
-        <activity android:name=".activity.mainView.SuggestActivity"/>
-        <activity android:name=".activity.mainView.blanceView.BlancedesActivity"/>
-        <activity android:name=".activity.mainView.blanceView.RechangeActivity"/>
-        <activity android:name=".activity.mainView.loginView.RegistActivity"/>
-        <activity android:name=".activity.mainView.loginView.ForgetActivity"/>
-        <activity android:name=".activity.mainView.blanceView.RuleActivity"/>
-        <activity android:name=".activity.mainView.drawerView.HistoryActivity"/>
-        <activity android:name=".activity.mainView.searchView.HelpActivity"/>
-        <activity android:name=".activity.mainView.loginView.AccreditActivity"/>
-        <activity android:name=".activity.mainView.loginView.ResetcodeActivity"/>
-        <activity android:name=".activity.mainView.searchView.FaceActivity"/>
+        <activity android:name=".activity.mainView.searchView.SearchActivity" />
+        <activity android:name=".activity.mainView.searchView.SearchSuccessActivity" />
+        <activity android:name=".activity.mainView.NewsActivity" />
+        <activity android:name=".activity.mainView.SuggestActivity" />
+        <activity android:name=".activity.mainView.blanceView.BlancedesActivity" />
+        <activity android:name=".activity.mainView.blanceView.RechangeActivity" />
+        <activity android:name=".activity.mainView.loginView.RegistActivity" />
+        <activity android:name=".activity.mainView.loginView.ForgetActivity" />
+        <activity android:name=".activity.mainView.blanceView.RuleActivity" />
+        <activity android:name=".activity.mainView.drawerView.HistoryActivity" />
+        <activity android:name=".activity.mainView.searchView.HelpActivity" />
+        <activity android:name=".activity.mainView.loginView.AccreditActivity" />
+        <activity android:name=".activity.mainView.loginView.ResetcodeActivity" />
+        <activity android:name=".activity.mainView.searchView.FaceActivity" />
 
     </application>
 
