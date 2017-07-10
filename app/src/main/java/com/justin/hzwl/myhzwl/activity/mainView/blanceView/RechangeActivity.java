@@ -103,7 +103,7 @@ public class RechangeActivity extends BaseActivity {
             case 0:
                 one.setBackgroundResource(R.drawable.feedback_select_item_background);
                 one_text.setTextColor(getResources().getColor(R.color.white));
-                one_text.setTextColor(getResources().getColor(R.color.white));
+                one_text2.setTextColor(getResources().getColor(R.color.white));
                 break;
             case 1:
                 two.setBackgroundResource(R.drawable.feedback_select_item_background);

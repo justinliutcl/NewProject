@@ -173,11 +173,13 @@ public class SearchActivity extends BaseActivity{
                 idCard_iv.setImageResource(R.drawable.icon_id_card_nor);
                 jumpTo(this,AccreditActivity.class);
                 isEIDCard = true;
+                no_idcard_iv.setVisibility(View.INVISIBLE);
                 break;
             case R.id.idcard_layout:
                 phone.setImageResource(R.drawable.icon_idcard);
                 eid_iv.setImageResource(R.drawable.icon_eid_card_nor);
                 idCard_iv.setImageResource(R.drawable.icon_id_card_select);
+                no_idcard_iv.setVisibility(View.VISIBLE);
                 showCardSelect();
                 isEIDCard = false;
                 break;

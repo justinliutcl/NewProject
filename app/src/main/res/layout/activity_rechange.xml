@@ -92,7 +92,7 @@
                     android:layout_height="68dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
-                    android:background="@drawable/feedback_item_background">
+                    android:background="@drawable/feedback_select_item_background">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="充 ￥300"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="14sp" />
 
                         <TextView
@@ -115,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="送 ￥214"
-                            android:textColor="@color/purple_text"
+                            android:textColor="@color/white"
                             android:textSize="12sp" />
                     </LinearLayout>
 

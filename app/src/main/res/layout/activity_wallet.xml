@@ -9,7 +9,7 @@
         android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="@dimen/back_view_height"
-        app:text="关于我们"
+        app:text="我的钱包"
         android:background="@color/black"
         app:icon_visible="visible"
         app:right_text_visible="visible"

@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="将eID卡置于手机背面NFC识别区域，\n保持接触直至认证结束"
+                android:text="将eID卡置于手机背面上方NFC识别区域，\n保持接触直至认证结束"
                 android:textColor="#bb9fff"
                 android:textSize="12sp" />
         </LinearLayout>
