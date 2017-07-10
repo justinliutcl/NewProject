@@ -32,8 +32,8 @@
             android:paddingTop="12dp">
 
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/icon_" />
 
             <EditText
@@ -75,8 +75,8 @@
             android:paddingTop="12dp">
 
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/icon_phone_number" />
 
             <EditText
@@ -118,8 +118,8 @@
             android:paddingTop="12dp">
 
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/icon_address" />
 
             <EditText

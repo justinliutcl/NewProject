@@ -249,7 +249,7 @@ public class SearchActivity extends BaseActivity{
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                qrBitmap = AppUtil.generateBitmap("www.baidu.com", DimensionUtils.dpToPx(90),DimensionUtils.dpToPx(90));
+                qrBitmap = AppUtil.generateBitmap("www.baidu.com", DimensionUtils.dpToPx(100),DimensionUtils.dpToPx(100));
                 showQRdialog();
                 dialog.dismiss();
 

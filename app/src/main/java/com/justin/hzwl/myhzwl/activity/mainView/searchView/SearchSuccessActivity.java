@@ -10,6 +10,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,10 @@ public class SearchSuccessActivity extends BaseActivity implements View.OnClickL
         } else {
             showEidDialog();
         }
+
+        LinearLayout layout = mBackView.getTitleRightWrapper();
+        ImageView imageView = (ImageView) layout.findViewById(R.id.title_back);
+//        imageView.setImageResource(R.drawable);
 
     }
 
