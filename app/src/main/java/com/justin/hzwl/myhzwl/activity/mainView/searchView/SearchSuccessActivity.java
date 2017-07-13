@@ -49,8 +49,13 @@ public class SearchSuccessActivity extends BaseActivity implements View.OnClickL
 
         LinearLayout layout = mBackView.getTitleRightWrapper();
         ImageView imageView = (ImageView) layout.findViewById(R.id.title_back);
-//        imageView.setImageResource(R.drawable);
+        imageView.setImageResource(R.drawable.icon_share);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     @Override
