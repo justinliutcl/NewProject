@@ -3,6 +3,7 @@ package com.justin.hzwl.myhzwl.activity.mainView.searchView;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -17,18 +18,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
+import android.text.InputType;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.loginView.AccreditActivity;
+
+import org.json.JSONObject;
+
+import java.util.UUID;
 
 import util.AppUtil;
 import util.DimensionUtils;
@@ -144,6 +153,63 @@ public class SearchActivity extends BaseActivity{
 //                mHandler.sendEmptyMessageDelayed(MESSAGE_VALID_NFCBUTTON, 0);
 //            }
         }
+    }
+
+    public void eidSign(){
+//        Tag tag = (Tag) intent.getParcelableExtra(EXTRA_TAG);
+//        IsoDep isoDep = IsoDep.get(tag);
+//        try {
+//            idspDemo = EidCardFactory.getEidCardInstanceForNfc(isoDep);
+//            boolean is_eid_card = idspDemo.isEidCard();
+//            if(is_eid_card) {
+//                final int algorithm = 20;
+//                dialog = new LoadingDialog(fragment.getActivity(), " 认证中...");
+//                //显示Dialog
+//                //dialog.show();EditText signText= new EditText(fragment.getActivity());
+//                final EditText signText= new EditText(fragment.getActivity());
+//                signText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//                new android.app.AlertDialog.Builder(fragment.getActivity()).setTitle("请输入eID签名密码").
+//                        setIcon(android.R.drawable.ic_dialog_info)
+//                        .setView(signText)
+//                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                try {
+//                                    String biz_sequence_id = UUID.randomUUID().toString();
+//                                    String biz_time = Utils.getBizTime();
+//                                    String data_to_sign = biz_time + ":"
+//                                            + Utils.getRandom16Number() + ":" + biz_sequence_id;
+//                                    byte[] data_to_sign_bs = data_to_sign.getBytes("UTF-8");
+//                                    String data_to_sign_base64 = Base64.encodeToString(
+//                                            data_to_sign_bs, Base64.NO_WRAP);
+//                                    JSONObject sign_json = getConfig();
+//                                    sign_json.put("biz_type", "0201002");
+//                                    String eidCertId = idspDemo.getEidCertId();
+//                                    sign_json.put("eid_cert_id", new JSONObject(eidCertId));
+//                                    sign_json.put("data_to_sign", data_to_sign_base64);
+//                                    byte[] sign_info_s = idspDemo.sign(signText.getText().toString(), data_to_sign_bs, algorithm);
+//                                    String sign_info = Base64.encodeToString(sign_info_s, Base64.NO_WRAP);
+//                                    sign_json.put("eid_sign",sign_info);
+//                                    sign_json.put("eid_sign_algorithm",algorithm+"");
+//                                    String url= Config.urlPaht+"/asserver/rest/pki/biz/directlogin/sync";
+//                                    dialog.show();
+//                                    new CustomHttpConnection(url,"POST",sign_json,"sign",PkiAmFragment.this,fragment).start();
+//                                    // Toast.makeText(fragment.getActivity().getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+//                                }catch (EidCardException e){
+//                                    Toast.makeText(fragment.getActivity().getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+//                                }catch (Exception e){
+//                                    Toast.makeText(fragment.getActivity().getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        }).setNegativeButton("取消", null).show();
+//            }else{
+//                Toast.makeText(fragment.getActivity().getApplicationContext(),"不支持eID",Toast.LENGTH_SHORT).show();
+//            }
+//        }catch (EidCardException e){
+//            Toast.makeText(getActivity().getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+//        }catch (Exception e){
+//            Toast.makeText(getActivity().getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+//        }
     }
 
     @Override

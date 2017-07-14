@@ -16,6 +16,38 @@ public  class HttpClickCallBack {
         void onFailure(Call call, IOException e);
     }
     private ClickSuccessCallBack successCall;
+
     private FailureCallBack failureCall;
+
+    public HttpClickCallBack(ClickSuccessCallBack successCall, FailureCallBack failureCall) {
+        this.successCall = successCall;
+        this.failureCall = failureCall;
+    }
+
+    public HttpClickCallBack(FailureCallBack failureCall) {
+
+        this.failureCall = failureCall;
+    }
+
+    public HttpClickCallBack(ClickSuccessCallBack successCall) {
+
+        this.successCall = successCall;
+    }
+
+    public ClickSuccessCallBack getSuccessCall() {
+        return successCall;
+    }
+
+    public void setSuccessCall(ClickSuccessCallBack successCall) {
+        this.successCall = successCall;
+    }
+
+    public FailureCallBack getFailureCall() {
+        return failureCall;
+    }
+
+    public void setFailureCall(FailureCallBack failureCall) {
+        this.failureCall = failureCall;
+    }
 }
 
