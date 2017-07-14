@@ -1,7 +1,17 @@
 package util;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Justinliu on 2017/7/14.
@@ -118,6 +128,54 @@ public class EncryptUtil {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(str);
         return md.digest();
+    }
+
+    public static String getSign(HashMap<String, String> map) {
+        ArrayList<String> list = new ArrayList<>();
+        Set<Map.Entry<String, String>> set = map.entrySet();
+        for (Map.Entry<String, String> entry : set) {
+            if(!entry.getValue().equals("")){
+                list.add(entry.getKey());
+            }
+
+        }
+        Collections.sort(list, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                int a = o1.toCharArray()[0];
+                int b = o2.toCharArray()[0];
+                int i = 1;
+                while (a == b) {
+                    a = o1.toCharArray()[i];
+                    b = o2.toCharArray()[i];
+                    i++;
+                }
+                return a - b;
+            }
+        });
+
+        StringBuilder builder = new StringBuilder();
+        for(String key:list){
+            builder.append(key+"="+map.get(key)+"&");
+        }
+        String t = builder.toString();
+        t = t.substring(0,t.length()-1);
+        return t;
+    }
+
+    public static JSONObject getJson(HashMap<String, String> map) {
+        JSONObject object = new JSONObject();
+        ArrayList<String> list = new ArrayList<>();
+        Set<Map.Entry<String, String>> set = map.entrySet();
+        for (Map.Entry<String, String> entry : set) {
+            try {
+                object.put(entry.getKey(),entry.getValue());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return object;
     }
 
 }

@@ -1,12 +1,9 @@
 package util;
 
 import android.app.Activity;
-import android.content.Context;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.justin.hzwl.myhzwl.modul.HttpClickCallBack;
+import com.justin.hzwl.myhzwl.modul.callbackInterface.HttpClickCallBack;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +36,8 @@ public class HttpUtil {
     }
 
     private HttpUtil() {
-        client = new OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS)
+        client = new OkHttpClient.Builder()
+                .connectTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build();
@@ -92,7 +90,8 @@ public class HttpUtil {
     }
 
     public void send(String url, JSONObject _json, final HttpClickCallBack callBack) {
-        RequestBody body = RequestBody.create(MediaType.parse(JSON_TYPE), _json.toString());
+        String a = _json.toString();
+        RequestBody body = RequestBody.create(MediaType.parse(JSON_TYPE), a);
         Request request = new Request.Builder().url(url).post(body).build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {

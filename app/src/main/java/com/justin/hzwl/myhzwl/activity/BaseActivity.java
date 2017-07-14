@@ -12,16 +12,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.justin.hzwl.myhzwl.R;
+import com.justin.hzwl.myhzwl.modul.callbackInterface.HttpClickCallBack;
 
+import java.io.IOException;
+
+import okhttp3.Call;
 import views.BackView;
 
 /**
  * Created by ASUS on 2017/6/11.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener,HttpClickCallBack.ClickSuccessCallBack,HttpClickCallBack.FailureCallBack {
     public BackView mBackView;
     private boolean isOnCreate;
 
@@ -74,5 +79,19 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         Intent intent = new Intent(context, cls);
         startActivity(intent);
         context.finish();
+    }
+
+    @Override
+    public void onFailure(Call call, IOException e) {
+
+    }
+
+    @Override
+    public void onSuccess(String json) {
+
+    }
+
+    public void show(String text){
+        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
     }
 }
