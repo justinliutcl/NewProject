@@ -126,7 +126,7 @@ public class AppUtil {
 //        return reqJson;
 //    }
 
-    public String Bitmap2StrByBase64(Bitmap bit){
+    public static String Bitmap2StrByBase64(Bitmap bit){
         ByteArrayOutputStream bos=new ByteArrayOutputStream();
         bit.compress(Bitmap.CompressFormat.JPEG, 70, bos);//参数100表示不压缩
         byte[] bytes=bos.toByteArray();

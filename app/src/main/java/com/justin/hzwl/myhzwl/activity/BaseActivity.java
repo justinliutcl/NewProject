@@ -18,6 +18,9 @@ import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.modul.callbackInterface.HttpClickCallBack;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import okhttp3.Call;
 import views.BackView;
@@ -26,7 +29,7 @@ import views.BackView;
  * Created by ASUS on 2017/6/11.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener,HttpClickCallBack.ClickSuccessCallBack,HttpClickCallBack.FailureCallBack {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener, HttpClickCallBack.ClickSuccessCallBack, HttpClickCallBack.FailureCallBack {
     public BackView mBackView;
     private boolean isOnCreate;
 
@@ -50,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onResume() {
         super.onResume();
-        if(isOnCreate){
+        if (isOnCreate) {
             isOnCreate = false;
             mBackView = (BackView) findViewById(R.id.back);
             if (mBackView != null) {
@@ -81,6 +84,24 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         context.finish();
     }
 
+    public void jumpToWithValue(Context context, Class cls, HashMap<String, String> map) {
+        Intent intent = new Intent(context, cls);
+        Set<HashMap.Entry<String, String>> entry = map.entrySet();
+        for (HashMap.Entry<String, String> e : entry) {
+            intent.putExtra(e.getKey(),e.getValue());
+        }
+        startActivity(intent);
+    }
+
+    public void jumpToFinishWithValue(Context context, Class cls, HashMap<String, String> map) {
+        Intent intent = new Intent(context, cls);
+        Set<HashMap.Entry<String, String>> entry = map.entrySet();
+        for (HashMap.Entry<String, String> e : entry) {
+            intent.putExtra(e.getKey(),e.getValue());
+        }
+        startActivity(intent);
+    }
+
     @Override
     public void onFailure(Call call, IOException e) {
 
@@ -91,7 +112,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     }
 
-    public void show(String text){
-        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
+    public void show(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 }

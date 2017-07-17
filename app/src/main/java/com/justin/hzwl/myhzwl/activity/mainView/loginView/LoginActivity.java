@@ -100,6 +100,7 @@ public class LoginActivity extends BaseActivity{
                 show("登录成功");
             }else{
                 show("用户名或密码错误");
+                jumpToFinish(this,MainActivity.class);
             }
         } catch (JSONException e) {
             e.printStackTrace();

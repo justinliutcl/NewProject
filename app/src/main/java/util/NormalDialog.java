@@ -3,6 +3,7 @@ package util;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.justin.hzwl.myhzwl.R;
@@ -23,6 +24,8 @@ public class NormalDialog {
     public static AlertDialog showSimpleDialog(Context context, View view){
         AlertDialog builder = new AlertDialog.Builder(context, R.style.dialog).create();
         builder.show();
+        builder.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        builder.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         builder.setContentView(view);
         return builder;
     }

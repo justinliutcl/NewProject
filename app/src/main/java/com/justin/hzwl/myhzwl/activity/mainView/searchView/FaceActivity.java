@@ -3,6 +3,8 @@ package com.justin.hzwl.myhzwl.activity.mainView.searchView;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,11 +13,25 @@ import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
 import com.justin.hzwl.myhzwl.activity.MainActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.searchView.surface.CameraSurfaceHolder;
+import com.justin.hzwl.myhzwl.modul.callbackInterface.HttpClickCallBack;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
+import okhttp3.Call;
+import util.AppUtil;
+import util.ContentKey;
+import util.EncryptUtil;
+import util.HttpUtil;
 
 public class FaceActivity extends BaseActivity{
     SurfaceView surfaceView;
     CameraSurfaceHolder mCameraSurfaceHolder = new CameraSurfaceHolder();
-    ImageView bitmap;
     ImageView face_sure_iv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +43,16 @@ public class FaceActivity extends BaseActivity{
     public void init() {
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
         mCameraSurfaceHolder.setCameraSurfaceHolder(this,surfaceView);
-        bitmap = (ImageView) findViewById(R.id.bitmap);
         face_sure_iv = (ImageView) findViewById(R.id.face_sure_iv);
         face_sure_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bitmap bit = mCameraSurfaceHolder.getBitmap();
-//                bitmap.setImageBitmap(bit);
-                SearchSuccessActivity.jump(FaceActivity.this,SearchSuccessActivity.FRAM_FACE);
+                Bitmap bit = mCameraSurfaceHolder.getBitmap();
+                if(bit!=null){
+                    String imageBase = AppUtil.Bitmap2StrByBase64(bit);
+                    send(imageBase);
+//                    SearchSuccessActivity.jump(FaceActivity.this,SearchSuccessActivity.FRAM_FACE);
+                }
             }
         });
     }
@@ -48,5 +66,55 @@ public class FaceActivity extends BaseActivity{
         switch (v.getId()){
 
         }
+    }
+
+    public void send(String imageBase){
+        JSONObject jsonObj=null;
+        try {
+            jsonObj = new JSONObject();
+            jsonObj.put("username", getIntent().getStringExtra("name"));
+            jsonObj.put("number", getIntent().getStringExtra("idCard"));
+            jsonObj.put("feature_code", imageBase);
+            jsonObj.put("appId", "02JR1610081555371526");
+            jsonObj.put("biz_sequence_id", UUID.randomUUID().toString());
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+            String date = format.format(new Date());
+            jsonObj.put("biz_time", date);
+            jsonObj.put("sign_type", "3");
+            String dataToSign = "appId=" + jsonObj.getString("appId") + "&biz_sequence_id=" +
+                    jsonObj.getString("biz_sequence_id") + "&biz_time=" + jsonObj.getString("biz_time")
+                    + "&feature_code=" + jsonObj.getString("feature_code") +
+                    "&number=" + jsonObj.getString("number") + "&sign_type=3&username=" + jsonObj.getString("username");
+            String sign = EncryptUtil.getHmacMd5Str("994EB0BC820FBAF80AC0FF2B41DB9115"
+                    , Base64.encodeToString(dataToSign.getBytes(), Base64.NO_WRAP));
+            jsonObj.put("sign", sign);
+             HttpUtil.getHttpUtilInstance(FaceActivity.this).send(ContentKey.FACE_URL,jsonObj,new HttpClickCallBack(FaceActivity.this,FaceActivity.this));
+        }catch (Exception e){
+
+        }
+    }
+
+    @Override
+    public void onSuccess(String json) {
+        super.onSuccess(json);
+        Log.i("asd",json);
+//        try {
+//            JSONObject object = new JSONObject(json);
+//            String code = (String) object.get("code");
+//            if(code.equals(ContentKey.success)){
+//                jumpToFinish(this,MainActivity.class);
+//                show("登录成功");
+//            }else{
+//                show("用户名或密码错误");
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    @Override
+    public void onFailure(Call call, IOException e) {
+        super.onFailure(call, e);
+        Log.i("asd",e.getMessage());
     }
 }
