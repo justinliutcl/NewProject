@@ -51,7 +51,6 @@ public class FaceActivity extends BaseActivity{
                 if(bit!=null){
                     String imageBase = AppUtil.Bitmap2StrByBase64(bit);
                     send(imageBase);
-//                    SearchSuccessActivity.jump(FaceActivity.this,SearchSuccessActivity.FRAM_FACE);
                 }
             }
         });
@@ -98,18 +97,17 @@ public class FaceActivity extends BaseActivity{
     public void onSuccess(String json) {
         super.onSuccess(json);
         Log.i("asd",json);
-//        try {
-//            JSONObject object = new JSONObject(json);
-//            String code = (String) object.get("code");
-//            if(code.equals(ContentKey.success)){
-//                jumpToFinish(this,MainActivity.class);
-//                show("登录成功");
-//            }else{
-//                show("用户名或密码错误");
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            JSONObject object = new JSONObject(json);
+            String code = (String) object.get("status");
+            if(code.equals(ContentKey.faceCode)){
+                SearchSuccessActivity.jump(FaceActivity.this,SearchSuccessActivity.FRAM_FACE);
+            }else{
+                show("匹配失败");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

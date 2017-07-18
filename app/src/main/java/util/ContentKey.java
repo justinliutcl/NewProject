@@ -18,10 +18,11 @@ public class ContentKey {
 
     public static final String LOGIN_URL        = "http://101.201.56.23:8888/authenti-eidapi/asserver/identity/check";
     public static final String REGIST_URL       = "http://101.201.56.23:8888/authenti-eidapi/asserver/identity/register";
-    public static final String FACE_URL       = "http://101.201.56.23:8888/asserver/identity/facescan";
-    public static final String EID_URL       = "http://101.201.56.23:8888/authenti-eidapi/asserver/rest/active/realname/signverify/sync";
+    public static final String FACE_URL         = "http://101.201.56.23:8888/authenti-eidapi/asserver/identity/facescan";
+    public static final String EID_URL          = "http://101.201.56.23:8888/authenti-eidapi/asserver/rest/active/realname/signverify/sync";
 
     public static final String success = "00";
+    public static final String faceCode = "0";
 
     public static Map getDefuleMap(String bizNum){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");

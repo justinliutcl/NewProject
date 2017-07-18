@@ -40,14 +40,21 @@ import com.eidlink.sdk.EidLinkSE;
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.loginView.AccreditActivity;
+import com.justin.hzwl.myhzwl.modul.callbackInterface.HttpClickCallBack;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 
+import okhttp3.Call;
 import util.AppUtil;
+import util.ContentKey;
 import util.DimensionUtils;
+import util.EidHttpUtil;
+import util.HttpUtil;
 import util.NormalDialog;
 
 import static android.nfc.NfcAdapter.EXTRA_TAG;
@@ -121,6 +128,7 @@ public class SearchActivity extends BaseActivity{
         eid.setSEInfo(TerminalCert,TerminalPrikey);
         initAnim();
         initNfc();
+        isEIDCard = true;
     }
 
     private void initAnim(){
@@ -162,61 +170,56 @@ public class SearchActivity extends BaseActivity{
         }
     }
 
-    public void eidSign(){
-//        Tag tag = (Tag) intent.getParcelableExtra(EXTRA_TAG);
-//        IsoDep isoDep = IsoDep.get(tag);
-//        try {
-//            idspDemo = EidCardFactory.getEidCardInstanceForNfc(isoDep);
-//            boolean is_eid_card = idspDemo.isEidCard();
-//            if(is_eid_card) {
-//                final int algorithm = 20;
-//                dialog = new LoadingDialog(fragment.getActivity(), " 认证中...");
-//                //显示Dialog
-//                //dialog.show();EditText signText= new EditText(fragment.getActivity());
-//                final EditText signText= new EditText(fragment.getActivity());
-//                signText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-//                new android.app.AlertDialog.Builder(fragment.getActivity()).setTitle("请输入eID签名密码").
-//                        setIcon(android.R.drawable.ic_dialog_info)
-//                        .setView(signText)
-//                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                try {
-//                                    String biz_sequence_id = UUID.randomUUID().toString();
-//                                    String biz_time = Utils.getBizTime();
-//                                    String data_to_sign = biz_time + ":"
-//                                            + Utils.getRandom16Number() + ":" + biz_sequence_id;
-//                                    byte[] data_to_sign_bs = data_to_sign.getBytes("UTF-8");
-//                                    String data_to_sign_base64 = Base64.encodeToString(
-//                                            data_to_sign_bs, Base64.NO_WRAP);
-//                                    JSONObject sign_json = getConfig();
-//                                    sign_json.put("biz_type", "0201002");
-//                                    String eidCertId = idspDemo.getEidCertId();
-//                                    sign_json.put("eid_cert_id", new JSONObject(eidCertId));
-//                                    sign_json.put("data_to_sign", data_to_sign_base64);
-//                                    byte[] sign_info_s = idspDemo.sign(signText.getText().toString(), data_to_sign_bs, algorithm);
-//                                    String sign_info = Base64.encodeToString(sign_info_s, Base64.NO_WRAP);
-//                                    sign_json.put("eid_sign",sign_info);
-//                                    sign_json.put("eid_sign_algorithm",algorithm+"");
-//                                    String url= Config.urlPaht+"/asserver/rest/pki/biz/directlogin/sync";
-//                                    dialog.show();
-//                                    new CustomHttpConnection(url,"POST",sign_json,"sign",PkiAmFragment.this,fragment).start();
-//                                    // Toast.makeText(fragment.getActivity().getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-//                                }catch (EidCardException e){
-//                                    Toast.makeText(fragment.getActivity().getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-//                                }catch (Exception e){
-//                                    Toast.makeText(fragment.getActivity().getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        }).setNegativeButton("取消", null).show();
-//            }else{
-//                Toast.makeText(fragment.getActivity().getApplicationContext(),"不支持eID",Toast.LENGTH_SHORT).show();
-//            }
-//        }catch (EidCardException e){
-//            Toast.makeText(getActivity().getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-//        }catch (Exception e){
-//            Toast.makeText(getActivity().getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-//        }
+    public void eidSign(EidCard idspDemo){
+        try {
+            boolean is_eid_card = idspDemo.isEidCard();
+            if(is_eid_card) {
+                final int algorithm = 20;
+                //显示Dialog
+                //dialog.show();EditText signText= new EditText(fragment.getActivity());
+                final EditText signText= new EditText(this);
+                signText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                new android.app.AlertDialog.Builder(this).setTitle("请输入eID签名密码").
+                        setIcon(android.R.drawable.ic_dialog_info)
+                        .setView(signText)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                try {
+                                    String biz_sequence_id = UUID.randomUUID().toString();
+                                    String biz_time = EidHttpUtil.getBizTime();
+                                    String data_to_sign = biz_time + ":"
+                                            + EidHttpUtil.getRandom16Number() + ":" + biz_sequence_id;
+                                    byte[] data_to_sign_bs = data_to_sign.getBytes("UTF-8");
+                                    String data_to_sign_base64 = Base64.encodeToString(
+                                            data_to_sign_bs, Base64.NO_WRAP);
+                                    JSONObject sign_json = EidHttpUtil.getConfig();
+                                    sign_json.put("biz_type", "0201002");
+                                    String eidCertId = idspDemo.getEidCertId();
+                                    sign_json.put("eid_cert_id", new JSONObject(eidCertId));
+                                    sign_json.put("data_to_sign", data_to_sign_base64);
+                                    byte[] sign_info_s = idspDemo.sign(signText.getText().toString(), data_to_sign_bs, algorithm);
+                                    String sign_info = Base64.encodeToString(sign_info_s, Base64.NO_WRAP);
+                                    sign_json.put("eid_sign",sign_info);
+                                    sign_json.put("eid_sign_algorithm",algorithm+"");
+                                    String url= ContentKey.EID_URL;
+                                    HttpUtil.getHttpUtilInstance(SearchActivity.this).send(url,sign_json,new HttpClickCallBack(SearchActivity.this,SearchActivity.this));
+                                    // Toast.makeText(fragment.getActivity().getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+                                }catch (EidCardException e){
+                                    Toast.makeText(SearchActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }catch (Exception e){
+                                    Toast.makeText(SearchActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }else{
+                Toast.makeText(SearchActivity.this,"不支持eID",Toast.LENGTH_SHORT).show();
+            }
+        }catch (EidCardException e){
+            Toast.makeText(SearchActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Toast.makeText(SearchActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -473,11 +476,33 @@ public class SearchActivity extends BaseActivity{
         //获取EidCard
         try {
             EidCard eidCard = EidCardFactory.getEidCardInstanceForNfc(isoDep);
-
+            eidSign(eidCard);
         } catch (EidCardException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void onSuccess(String json) {
+        super.onSuccess(json);
+        Log.i("asd",json);
+        try {
+            JSONObject object = new JSONObject(json);
+            String code = (String) object.get("status");
+            if(code.equals(ContentKey.faceCode)){
+
+            }else{
+                show("匹配失败");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onFailure(Call call, IOException e) {
+        super.onFailure(call, e);
+        Log.i("asd",e.getMessage());
     }
 }
