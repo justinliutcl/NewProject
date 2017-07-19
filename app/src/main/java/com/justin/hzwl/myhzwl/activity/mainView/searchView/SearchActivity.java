@@ -487,6 +487,7 @@ public class SearchActivity extends BaseActivity{
     public void onSuccess(String json) {
         super.onSuccess(json);
         Log.i("asd",json);
+        Toast.makeText(SearchActivity.this,json,Toast.LENGTH_LONG).show();
         try {
             JSONObject object = new JSONObject(json);
             String code = (String) object.get("status");
@@ -504,5 +505,6 @@ public class SearchActivity extends BaseActivity{
     public void onFailure(Call call, IOException e) {
         super.onFailure(call, e);
         Log.i("asd",e.getMessage());
+        Toast.makeText(SearchActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
     }
 }
