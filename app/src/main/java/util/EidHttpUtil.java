@@ -37,6 +37,7 @@ public class EidHttpUtil {
             sig_json.put("security_type", "10");
             sig_json.put("attach", "");
             sig_json.put("extension", new JSONObject()); // eid扩展信息
+            //biz_type
         }catch (Exception e){
 
         }
