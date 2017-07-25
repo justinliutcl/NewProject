@@ -2,13 +2,21 @@ package util;
 
 import android.util.Base64;
 
+import com.google.zxing.common.StringUtils;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -28,6 +36,30 @@ public class EidHttpUtil {
             String encrypt_factor = uuid.substring(uuid.length() - 16);
             String uuid2 = UUID.randomUUID().toString().replace("-", "");
             String sign_factor = uuid2.substring(uuid2.length() - 16);
+            Map factor=new HashMap();
+            factor.put("encrypt_factor", encrypt_factor);
+            factor.put("sign_factor", sign_factor);
+            sig_json.put("security_factor",new JSONObject(factor));
+            sig_json.put("encrypt_type", "1");
+            sig_json.put("sign_type", "1");
+            sig_json.put("security_type", "10");
+            sig_json.put("attach", "");
+            sig_json.put("extension", new JSONObject()); // eid扩展信息
+            //biz_type
+        }catch (Exception e){
+
+        }
+        return sig_json;
+    }
+
+    public static JSONObject getConfig2(String encrypt_factor,String sign_factor,String biz_sequence,String time){
+        JSONObject sig_json=new JSONObject();
+        try {
+            sig_json.put("version", "1.0.0");
+            sig_json.put("return_url", "");
+            sig_json.put("appId", "02JR1610081555371526");
+            sig_json.put("biz_time", time);
+            sig_json.put("biz_sequence_id", biz_sequence);
             Map factor=new HashMap();
             factor.put("encrypt_factor", encrypt_factor);
             factor.put("sign_factor", sign_factor);

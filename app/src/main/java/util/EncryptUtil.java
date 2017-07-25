@@ -1,8 +1,11 @@
 package util;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -12,6 +15,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Created by Justinliu on 2017/7/14.
@@ -160,6 +166,7 @@ public class EncryptUtil {
         }
         String t = builder.toString();
         t = t.substring(0,t.length()-1);
+        Log.i("asd",t);
         return t;
     }
 
@@ -176,6 +183,35 @@ public class EncryptUtil {
         }
 
         return object;
+    }
+
+    public static String hamcsha1(byte[] data, byte[] key)
+    {
+        try {
+            SecretKeySpec signingKey = new SecretKeySpec(key, "HmacSHA1");
+            Mac mac = Mac.getInstance("HmacSHA1");
+            mac.init(signingKey);
+            return byte2hex(mac.doFinal(data));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //二行制转字符串
+    public static String byte2hex(byte[] b)
+    {
+        StringBuilder hs = new StringBuilder();
+        String stmp;
+        for (int n = 0; b!=null && n < b.length; n++) {
+            stmp = Integer.toHexString(b[n] & 0XFF);
+            if (stmp.length() == 1)
+                hs.append('0');
+            hs.append(stmp);
+        }
+        return hs.toString().toUpperCase();
     }
 
 }

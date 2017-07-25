@@ -36,6 +36,7 @@ import com.eidlink.sdk.EidCard;
 import com.eidlink.sdk.EidCardException;
 import com.eidlink.sdk.EidCardFactory;
 import com.eidlink.sdk.EidLinkSE;
+import com.eidlink.sdk.EidLinkSEFactory;
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.loginView.AccreditActivity;
@@ -45,7 +46,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import okhttp3.Call;
@@ -131,8 +134,8 @@ public class SearchActivity extends BaseActivity{
 //        eid = EidLinkSEImpl.newInstance(mHandler, this, "0000000");
 //        eid.setSEInfo(TerminalCert,TerminalPrikey);
 
-//        eid = EidLinkSEFactory.getEidLinkSEForNfc(mHandler, this, "1151900");
-//        eid.setSEInfo(TerminalCert, TerminalPrikey);
+        eid = EidLinkSEFactory.getEidLinkSEForNfc(mHandler, this, "1151900");
+        eid.setSEInfo(TerminalCert, TerminalPrikey);
         initAnim();
         initNfc();
         isEIDCard = true;
@@ -264,6 +267,7 @@ public class SearchActivity extends BaseActivity{
                 idCard_iv.setImageResource(R.drawable.icon_id_card_select);
                 no_idcard_iv.setVisibility(View.VISIBLE);
 //                showCardSelect();
+                requestMessage("402191ef357212075853242fa");
                 isEIDCard = false;
                 break;
             case R.id.no_idcard_iv:
@@ -476,15 +480,46 @@ public class SearchActivity extends BaseActivity{
     };
 
     private void requestMessage(String reqid) {
-        JSONObject sign_json = EidHttpUtil.getConfig();
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String encrypt_factor = uuid.substring(uuid.length() - 16);
+        String uuid2 = UUID.randomUUID().toString().replace("-", "");
+        String sign_factor = uuid2.substring(uuid2.length() - 16);
+        String biz_sequence = UUID.randomUUID().toString().replace("-", "");
+        String time = EidHttpUtil.getBizTime();
+        JSONObject sign_json = EidHttpUtil.getConfig2(encrypt_factor,sign_factor,biz_sequence,time);
         try {
+            HashMap<String,String>map = new HashMap<>();
+            map.put("version", "1.0.0");
+            map.put("return_url", "");
+            map.put("appId", "02JR1610081555371526");
+            map.put("biz_time", time);
+            map.put("biz_sequence_id", biz_sequence);
+
+            HashMap<String,String> factor=new HashMap();
+            factor.put("encrypt_factor", encrypt_factor);
+            factor.put("sign_factor", sign_factor);
+
+            map.put("security_factor",EncryptUtil.getSign(factor));
+            map.put("encrypt_type", "1");
+            map.put("sign_type", "1");
+            map.put("security_type", "10");
+            map.put("attach", "");
+            map.put("extension", ""); // eid扩展信息
+            map.put("biz_type", "0801001");
+            map.put("reqId", reqid);
             sign_json.put("biz_type", "0801001");
             sign_json.put("reqId", reqid);
-//            sign_json.put("sign", EncryptUtil.getHmacMd5Str(ContentKey.MD5_KEY, Base64.encodeToString(
-//                    EncryptUtil.getSign(map).getBytes("UTF-8"), Base64.NO_WRAP)));
+            String text = Base64.encodeToString(
+                    EncryptUtil.getSign(map).getBytes("UTF-8"), Base64.NO_WRAP);
+            Log.i("asd",text);
+            sign_json.put("sign", EncryptUtil.hamcsha1(Base64.encode(EncryptUtil.getSign(map).getBytes("UTF-8"), Base64.NO_WRAP),
+                    ContentKey.MD5_KEY.getBytes()));
             String url= ContentKey.IDCARD_URL;
+            HttpUtil.getHttpUtilInstance(SearchActivity.this).send(url,sign_json,new HttpClickCallBack(SearchActivity.this,SearchActivity.this));
 
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 

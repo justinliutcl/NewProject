@@ -91,6 +91,7 @@ public class HttpUtil {
 
     public void send(String url, JSONObject _json, final HttpClickCallBack callBack) {
         String a = _json.toString();
+        Log.i("asd",a);
         RequestBody body = RequestBody.create(MediaType.parse(JSON_TYPE), a);
         Request request = new Request.Builder().url(url).post(body).build();
         Call call = client.newCall(request);
