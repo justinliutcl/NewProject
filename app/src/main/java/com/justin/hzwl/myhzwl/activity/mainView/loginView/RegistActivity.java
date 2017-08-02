@@ -116,7 +116,7 @@ public class RegistActivity extends BaseActivity {
                 try {
                     object = new JSONObject(json);
                     String code = (String) object.get("code");
-                    if(code.equals("02")){
+                    if(code.equals("00")){
                         show("发送成功");
                     }else{
                         show("验证码输入错误");
