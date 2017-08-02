@@ -109,6 +109,23 @@ public class HttpUtil {
         });
     }
 
+    public void sendGet(String url, final HttpClickCallBack callBack) {
+        Request request = new Request.Builder().url(url).get().build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUIThread(callBack, call, e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String str = response.body().string();
+                runOnUIThread(callBack, str);
+            }
+        });
+    }
+
     private void runOnUIThread(final HttpClickCallBack callBack, final Call call, final IOException e) {
         if (context != null) {
             context.runOnUiThread(new Runnable() {

@@ -106,6 +106,7 @@
                     android:background="#bbb" />
 
                 <TextView
+                    android:id="@+id/send_SMS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
@@ -115,6 +116,38 @@
                     android:textColor="@color/purple_login_text" />
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#bbb" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="25dp">
+
+                <ImageView
+                    android:id="@+id/pic_iv"
+                    android:layout_width="60dp"
+                    android:layout_height="26dp"
+                    android:src="@drawable/icon_password" />
+
+                <EditText
+                    android:id="@+id/pic_bitmap"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:inputType="textPassword"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="请输入右侧验证码"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="#bbb"
+                    android:textSize="14sp" />
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

@@ -267,7 +267,7 @@ public class SearchActivity extends BaseActivity{
                 idCard_iv.setImageResource(R.drawable.icon_id_card_select);
                 no_idcard_iv.setVisibility(View.VISIBLE);
 //                showCardSelect();
-                requestMessage("402191ef357212075853242fa");
+//                requestMessage("402191ef357212075853242fa");
                 isEIDCard = false;
                 break;
             case R.id.no_idcard_iv:
@@ -546,17 +546,17 @@ public class SearchActivity extends BaseActivity{
         super.onSuccess(json);
         Log.i("asd",json);
         Toast.makeText(SearchActivity.this,json,Toast.LENGTH_LONG).show();
-        try {
-            JSONObject object = new JSONObject(json);
-            String code = (String) object.get("status");
-            if(code.equals(ContentKey.faceCode)){
-
-            }else{
-                show("匹配失败");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            JSONObject object = new JSONObject(json);
+//            String code = (String) object.get("status");
+//            if(code.equals(ContentKey.faceCode)){
+//
+//            }else{
+//                show("匹配失败");
+//            }
+//        } catch (JSONException e) {a
+//            e.printStackTrace();
+//        }
     }
 
     @Override

@@ -17,6 +17,10 @@ public class ContentKey {
     public static final String MD5_KEY="994EB0BC820FBAF80AC0FF2B41DB9115";
     public static final String VERSION="2.0.0";
 
+    public static final String SMS_PIC          = "http://101.201.56.23:8888/authenti-eidapi/asserver/sms/createPic";
+    public static final String SMS_CODE          = "http://101.201.56.23:8888/authenti-eidapi/asserver/sms/sendCms?";
+
+
     public static final String LOGIN_URL        = "http://101.201.56.23:8888/authenti-eidapi/asserver/identity/check";
     public static final String REGIST_URL       = "http://101.201.56.23:8888/authenti-eidapi/asserver/identity/register";
     public static final String FACE_URL         = "http://101.201.56.23:8888/authenti-eidapi/asserver/identity/facescan";
