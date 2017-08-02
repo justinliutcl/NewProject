@@ -64,6 +64,7 @@ public class RegistActivity extends BaseActivity {
     public void setListener() {
         login.setOnClickListener(this);
         send_SMS.setOnClickListener(this);
+        pic_iv.setOnClickListener(this);
     }
 
     @Override
@@ -89,8 +90,9 @@ public class RegistActivity extends BaseActivity {
                     for(int i =0;i<byteArray.length();i++){
                         array[i]=Byte.parseByte(byteArray.get(i).toString());
                     }
-//                            Bitmap map = BitmapFactory.decodeByteArray(array,0,array.length);
-                    Glide.with(RegistActivity.this).load(array).into(pic_iv);
+                            Bitmap map = BitmapFactory.decodeByteArray(array,0,array.length);
+                    pic_iv.setImageBitmap(map);
+//                    Glide.with(RegistActivity.this).load(array).into(pic_iv);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -113,6 +115,13 @@ public class RegistActivity extends BaseActivity {
                 JSONObject object = null;
                 try {
                     object = new JSONObject(json);
+                    String code = (String) object.get("code");
+                    if(code.equals("02")){
+                        show("发送成功");
+                    }else{
+                        show("验证码输入错误");
+                        getPic();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -132,9 +141,9 @@ public class RegistActivity extends BaseActivity {
 //            case R.id.phone_nume:
 //
 //                break;
-//            case R.id.sms_code:
-//
-//                break;
+            case R.id.pic_iv:
+                getPic();
+                break;
             case R.id.send_SMS:
                 if(uuid == null){
                     show("请填写正确验证码");
