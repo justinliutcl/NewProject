@@ -52,14 +52,15 @@
                     android:src="@drawable/icon_phone" />
 
                 <EditText
+                    android:id="@+id/phone_nume"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:hint="请输入手机号码"
-                    android:singleLine="true"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="#bbb"
                     android:textSize="14sp" />
@@ -84,14 +85,15 @@
                     android:src="@drawable/icon_code" />
 
                 <EditText
+                    android:id="@+id/sms_code"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:hint="请输入验证码"
-                    android:singleLine="true"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="#bbb"
                     android:textSize="14sp" />
@@ -104,9 +106,10 @@
                     android:background="#bbb" />
 
                 <TextView
+                    android:id="@+id/send_SMS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="5dp"
                     android:text="发送"
@@ -132,18 +135,56 @@
                     android:src="@drawable/icon_password" />
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/password"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
-                    android:inputType="textPassword"
                     android:background="@color/white"
                     android:hint="请输入6-12位数字或字母密码"
+                    android:inputType="textPassword"
                     android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="#bbb"
                     android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#bbb" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="25dp">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@drawable/icon_regist_sms_code" />
+
+                <EditText
+                    android:id="@+id/pic_bitmap"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="请输入右侧验证码"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="#bbb"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/pic_iv"
+                    android:layout_width="70dp"
+                    android:layout_height="26dp" />
             </LinearLayout>
 
             <TextView

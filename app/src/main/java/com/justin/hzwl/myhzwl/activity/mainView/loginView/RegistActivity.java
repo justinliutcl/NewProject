@@ -3,20 +3,17 @@ package com.justin.hzwl.myhzwl.activity.mainView.loginView;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.justin.hzwl.myhzwl.R;
-
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
-import com.justin.hzwl.myhzwl.activity.MainActivity;
 import com.justin.hzwl.myhzwl.modul.callbackInterface.HttpClickCallBack;
 
 import org.json.JSONArray;
@@ -34,13 +31,16 @@ import util.EncryptUtil;
 import util.HttpUtil;
 
 public class RegistActivity extends BaseActivity {
-    EditText phone, smsCode, passWord,pic_bitmap;
+    private static final int TIME_GO = 1;
+    EditText phone, smsCode, passWord, pic_bitmap;
     ImageView login;
     ImageView pic_iv;
-    String phoneNum,sms,psw;
+    String phoneNum, sms, psw;
     TextView send_SMS;
     private boolean isFirst;
     String uuid;
+    int time = 60;
+    boolean isDistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,25 @@ public class RegistActivity extends BaseActivity {
         setContentView(R.layout.activity_regist);
 
     }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case TIME_GO:
+                    time--;
+                    if (time > 0 && !isDistory) {
+                        send_SMS.setText(String.valueOf(time));
+                        handpostTime();
+                    } else {
+                        send_SMS.setText("发送");
+                        send_SMS.setClickable(true);
+                    }
+                    break;
+            }
+        }
+    };
 
     @Override
     public void init() {
@@ -70,27 +89,27 @@ public class RegistActivity extends BaseActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(!isFirst){
+        if (!isFirst) {
             isFirst = true;
             getPic();
         }
     }
 
-    public void getPic(){
-        HttpUtil.getHttpUtilInstance(this).sendGet(ContentKey.SMS_PIC,new HttpClickCallBack(new HttpClickCallBack.ClickSuccessCallBack() {
+    public void getPic() {
+        HttpUtil.getHttpUtilInstance(this).sendGet(ContentKey.SMS_PIC, new HttpClickCallBack(new HttpClickCallBack.ClickSuccessCallBack() {
             @Override
             public void onSuccess(String json) {
-                Log.i("asd",json);
+                Log.i("asd", json);
                 JSONObject object = null;
                 try {
                     object = new JSONObject(json);
                     uuid = (String) object.get("uuid");
-                    JSONArray byteArray= object.getJSONArray("picCheckCode");
+                    JSONArray byteArray = object.getJSONArray("picCheckCode");
                     byte[] array = new byte[byteArray.length()];
-                    for(int i =0;i<byteArray.length();i++){
-                        array[i]=Byte.parseByte(byteArray.get(i).toString());
+                    for (int i = 0; i < byteArray.length(); i++) {
+                        array[i] = Byte.parseByte(byteArray.get(i).toString());
                     }
-                            Bitmap map = BitmapFactory.decodeByteArray(array,0,array.length);
+                    Bitmap map = BitmapFactory.decodeByteArray(array, 0, array.length);
                     pic_iv.setImageBitmap(map);
 //                    Glide.with(RegistActivity.this).load(array).into(pic_iv);
                 } catch (JSONException e) {
@@ -106,19 +125,22 @@ public class RegistActivity extends BaseActivity {
         }));
     }
 
-    public void sendSMSCode(String phone,String uuid,String code){
-        String url = ContentKey.SMS_CODE+"phone="+phone+"&uuid="+uuid+"&code="+code;
-        HttpUtil.getHttpUtilInstance(this).sendGet(url,new HttpClickCallBack(new HttpClickCallBack.ClickSuccessCallBack() {
+    public void sendSMSCode(String phone, String uuid, String code) {
+        String url = ContentKey.SMS_CODE + "phone=" + phone + "&uuid=" + uuid + "&code=" + code;
+        HttpUtil.getHttpUtilInstance(this).sendGet(url, new HttpClickCallBack(new HttpClickCallBack.ClickSuccessCallBack() {
             @Override
             public void onSuccess(String json) {
-                Log.i("asd",json);
+                Log.i("asd", json);
                 JSONObject object = null;
                 try {
                     object = new JSONObject(json);
                     String code = (String) object.get("code");
-                    if(code.equals("00")){
+                    if (code.equals("00")) {
                         show("发送成功");
-                    }else{
+                        send_SMS.setClickable(false);
+                        send_SMS.setText(String.valueOf(time));
+                        handpostTime();
+                    } else {
                         show("验证码输入错误");
                         getPic();
                     }
@@ -135,6 +157,10 @@ public class RegistActivity extends BaseActivity {
         }));
     }
 
+    private void handpostTime() {
+        handler.sendEmptyMessageDelayed(TIME_GO, 1000);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -145,18 +171,18 @@ public class RegistActivity extends BaseActivity {
                 getPic();
                 break;
             case R.id.send_SMS:
-                if(uuid == null){
+                if (uuid == null) {
                     show("请填写正确验证码");
                 }
-                if(phone.getText().toString().isEmpty()){
+                if (phone.getText().toString().isEmpty()) {
                     show("请填写手机号");
                     return;
                 }
-                if(pic_bitmap.getText().toString().isEmpty()){
+                if (pic_bitmap.getText().toString().isEmpty()) {
                     show("请填写验证码");
                     return;
                 }
-                sendSMSCode(phone.getText().toString(),uuid,pic_bitmap.getText().toString());
+                sendSMSCode(phone.getText().toString(), uuid, pic_bitmap.getText().toString());
                 break;
 
             case R.id.login:
@@ -171,20 +197,20 @@ public class RegistActivity extends BaseActivity {
     private void login() {
         JSONObject json = new JSONObject();
         try {
-            HashMap<String,String> map =new HashMap<>();
+            HashMap<String, String> map = new HashMap<>();
             map.put("appId", ContentKey.APP_ID);
-            map.put("email","");
-            map.put("idcard","");
-            map.put("password",psw);
-            map.put("phone",phoneNum);
+            map.put("email", "");
+            map.put("idcard", "");
+            map.put("password", psw);
+            map.put("phone", phoneNum);
             map.put("requestTime", EidHttpUtil.getBizTime());
-            map.put("username","");
-            map.put("verification_code",sms);
+            map.put("username", "");
+            map.put("verification_code", sms);
 
             json = EncryptUtil.getJson(map);
             json.put("sign", EncryptUtil.getHmacMd5Str(ContentKey.MD5_KEY, Base64.encodeToString(
                     EncryptUtil.getSign(map).getBytes("UTF-8"), Base64.NO_WRAP)));
-            HttpUtil.getHttpUtilInstance(this).send(ContentKey.REGIST_URL,json,new HttpClickCallBack(this,this));
+            HttpUtil.getHttpUtilInstance(this).send(ContentKey.REGIST_URL, json, new HttpClickCallBack(this, this));
         } catch (JSONException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -196,13 +222,19 @@ public class RegistActivity extends BaseActivity {
         try {
             JSONObject object = new JSONObject(json);
             String code = (String) object.get("code");
-            if(code.equals(ContentKey.success)){
+            if (code.equals(ContentKey.success)) {
                 show("注册成功");
-            }else{
+            } else {
                 show("已存在相同账户");
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isDistory = true;
     }
 }
