@@ -82,7 +82,7 @@ public class GuideActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.submit:
-                jumpToFinish(GuideActivity.this,MainActivity.class);
+                jumpToFinish(GuideActivity.this,LoginActivity.class);
                 SharedUtil.getInstance(this).setFirst();
                 break;
         }

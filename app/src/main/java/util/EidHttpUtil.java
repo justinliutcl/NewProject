@@ -2,6 +2,7 @@ package util;
 
 import android.util.Base64;
 
+import com.alipay.security.mobile.module.commonutils.crypto.Hex;
 import com.google.zxing.common.StringUtils;
 
 import org.json.JSONArray;

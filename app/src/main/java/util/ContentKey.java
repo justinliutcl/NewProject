@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class ContentKey {
     public static final String IS_FIRST="is_first";
+    public static final String USER_ID="user_id";
     public static final String APP_ID="02JR1610081555371526";
     public static final String REGIST_APP_KEY="6817372066116487858187c8bcf02025";
 
@@ -19,6 +20,9 @@ public class ContentKey {
 
     public static final String SMS_PIC          = "http://101.201.56.23:8888/authenti-eidapi/asserver/sms/createPic";
     public static final String SMS_CODE          = "http://101.201.56.23:8888/authenti-eidapi/asserver/sms/sendCms?";
+
+
+    public static final String ALIPAY_URL          = " https://docs.open.alipay.com/204/105301";
 
 
     public static final String LOGIN_URL        = "http://101.201.56.23:8888/authenti-eidapi/asserver/identity/check";

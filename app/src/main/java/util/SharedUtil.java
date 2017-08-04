@@ -28,6 +28,15 @@ public class SharedUtil {
         setDate(ContentKey.IS_FIRST,"true");
     }
 
+    public void setUserId(String id){
+        setDate(ContentKey.USER_ID, id);
+    }
+
+    public String getUserId() {
+        String value = getData(ContentKey.USER_ID);
+        return value;
+    }
+
     public boolean getFirst() {
         String value = getData(ContentKey.IS_FIRST);
         if (value != null) {

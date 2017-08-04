@@ -37,4 +37,16 @@ public class NormalDialog {
         t.setText(text);
         builder.setContentView(view);
     }
+
+    public static AlertDialog showPassDialog(Context context){
+        AlertDialog builder = new AlertDialog.Builder(context, R.style.dialog).create();
+        builder.show();
+        builder.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        builder.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        builder.setCanceledOnTouchOutside(false);
+        View view = View.inflate(context,R.layout.dialog_pass,null);
+        builder.setContentView(view);
+        return builder;
+    }
+
 }

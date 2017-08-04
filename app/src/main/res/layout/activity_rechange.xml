@@ -105,7 +105,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="充 ￥300"
+                            android:text="充 ￥500"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
 
@@ -114,7 +114,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="送 ￥214"
+                            android:text="送 ￥200"
                             android:textColor="@color/white"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -139,7 +139,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="充 ￥300"
+                            android:text="充 ￥100"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -148,7 +148,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="送 ￥214"
+                            android:text="送 ￥30"
                             android:textColor="@color/purple_text"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -194,7 +194,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="送 ￥20"
+                            android:text="送 ￥10"
                             android:textColor="@color/purple_text"
                             android:textSize="12sp" />
                     </LinearLayout>

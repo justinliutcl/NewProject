@@ -62,6 +62,7 @@ public class RegistActivity extends BaseActivity {
                     } else {
                         send_SMS.setText("发送");
                         send_SMS.setClickable(true);
+                        time = 60;
                     }
                     break;
             }

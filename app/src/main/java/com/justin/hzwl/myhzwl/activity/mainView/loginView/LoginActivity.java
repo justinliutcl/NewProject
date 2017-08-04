@@ -24,6 +24,7 @@ import util.ContentKey;
 import util.EidHttpUtil;
 import util.EncryptUtil;
 import util.HttpUtil;
+import util.SharedUtil;
 
 public class LoginActivity extends BaseActivity{
     ImageView login;
@@ -95,12 +96,16 @@ public class LoginActivity extends BaseActivity{
         try {
             JSONObject object = new JSONObject(json);
             String code = (String) object.get("code");
+
             if(code.equals(ContentKey.success)){
+                String id = (String) object.getJSONObject("user").get("id");
+                SharedUtil.getInstance(LoginActivity.this).setUserId(id);
                 jumpToFinish(this,MainActivity.class);
                 show("登录成功");
             }else{
                 show("用户名或密码错误");
                 jumpToFinish(this,MainActivity.class);
+                SharedUtil.getInstance(LoginActivity.this).setUserId("51e8522e662147c69040066e7b2b4e12");
             }
         } catch (JSONException e) {
             e.printStackTrace();
