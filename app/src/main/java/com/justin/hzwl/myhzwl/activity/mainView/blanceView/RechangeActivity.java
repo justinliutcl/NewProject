@@ -83,7 +83,7 @@ public class RechangeActivity extends BaseActivity {
                 break;
             case R.id.submit_btn:
                 if (mPayType == 0) {
-                    AliPayUse pay = new AliPayUse(EidHttpUtil.createUUID(), RechangeActivity.this, "余额充值", 0.01, "购物", ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
+                    AliPayUse pay = new AliPayUse(EidHttpUtil.createUUID(), RechangeActivity.this, "余额充值", mMoney, "充值", ContentKey.ALIPAY_URL, new AliPayUse.OnPayCall() {
                         @Override
                         public void SuccessCallBack(String mes) {
 

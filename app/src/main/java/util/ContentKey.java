@@ -22,7 +22,7 @@ public class ContentKey {
     public static final String SMS_CODE          = "http://101.201.56.23:8888/authenti-eidapi/asserver/sms/sendCms?";
 
 
-    public static final String ALIPAY_URL          = " https://docs.open.alipay.com/204/105301";
+    public static final String ALIPAY_URL          = "http://101.201.56.23:8888/authenti-eidapi/asserver/rest/app/pay/recharge_notify";
 
 
     public static final String LOGIN_URL        = "http://101.201.56.23:8888/authenti-eidapi/asserver/identity/check";
@@ -34,20 +34,4 @@ public class ContentKey {
     public static final String success = "00";
     public static final String faceCode = "0";
 
-    public static Map getDefuleMap(String bizNum){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        String time = dateFormat.format(new Date());
-        HashMap<String,String> map = new HashMap<>();
-        map.put("version",VERSION);
-        map.put("app_id",APP_ID);
-        map.put("return_url","");
-        map.put("biz_type",bizNum);
-        map.put("biz_time",time);
-        map.put("biz_sequence_id",VERSION);
-        map.put("security_factor","{\"encrypt_factor\":\"encryptfactor\",\"sign_factor\":\"signfactor\"}");
-        map.put("encrypt_type","1");
-        map.put("sign_type","1");
-        map.put("sign","1");
-        return map;
-    }
 }
