@@ -39,11 +39,33 @@
             android:layout_below="@+id/back"
             android:orientation="vertical">
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
-                android:background="@drawable/back_face" />
+                android:background="@drawable/back_face" >
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="将你的上半身置于框内"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+
+                    android:layout_marginBottom="10dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="对准摄像头"
+                    android:layout_centerHorizontal="true"
+                    android:layout_above="@+id/text"
+                    android:textColor="#555"
+                    android:textSize="11sp"
+                    android:layout_marginBottom="4dp"
+                    />
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/face_sure_iv"
