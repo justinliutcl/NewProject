@@ -12,6 +12,7 @@ import java.util.Map;
 public class ContentKey {
     public static final String IS_FIRST="is_first";
     public static final String USER_ID="user_id";
+    public static final String PHONE_NUMBER="user_id";
     public static final String APP_ID="02JR1610081555371526";
     public static final String REGIST_APP_KEY="6817372066116487858187c8bcf02025";
 

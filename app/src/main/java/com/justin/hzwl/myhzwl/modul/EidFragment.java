@@ -37,11 +37,6 @@ public class EidFragment extends Fragment {
         noMore_tv = (TextView) root.findViewById(R.id.nomore_tv);
         dataList = (RecyclerView) root.findViewById(R.id.datalist);
         list = new ArrayList<>();
-        list.add(new EidData());
-        list.add(new EidData());
-        list.add(new EidData());
-        list.add(new EidData());
-        list.add(new EidData());
         adapter = new EidRecycleBaseAdapter(getActivity(),list);
         dataList.setLayoutManager(new LinearLayoutManager(getActivity()));
         dataList.setAdapter(adapter);

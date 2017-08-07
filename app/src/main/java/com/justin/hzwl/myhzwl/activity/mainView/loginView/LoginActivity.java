@@ -2,14 +2,12 @@ package com.justin.hzwl.myhzwl.activity.mainView.loginView;
 
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.justin.hzwl.myhzwl.R;
-
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
 import com.justin.hzwl.myhzwl.activity.MainActivity;
 import com.justin.hzwl.myhzwl.modul.callbackInterface.HttpClickCallBack;
@@ -26,16 +24,20 @@ import util.EncryptUtil;
 import util.HttpUtil;
 import util.SharedUtil;
 
-public class LoginActivity extends BaseActivity{
+public class LoginActivity extends BaseActivity {
     ImageView login;
-    TextView regist,forget;
-    EditText phone,password;
-    String psw,phoneNum;
+    TextView regist, forget;
+    EditText phone, password;
+    String psw, phoneNum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        if (SharedUtil.getInstance(this).getPhoneNum() != null &&
+                SharedUtil.getInstance(this).getUserId() != null) {
+            jumpToFinish(this, MainActivity.class);
+        }
     }
 
     @Override
@@ -56,35 +58,35 @@ public class LoginActivity extends BaseActivity{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.login:
                 psw = password.getText().toString();
                 phoneNum = phone.getText().toString();
                 login();
                 break;
             case R.id.regist:
-                jumpTo(this,RegistActivity.class);
+                jumpTo(this, RegistActivity.class);
                 break;
             case R.id.forget:
-                jumpTo(this,ForgetActivity.class);
+                jumpTo(this, ForgetActivity.class);
                 break;
         }
     }
 
     private void login() {
-        JSONObject json ;
+        JSONObject json;
         try {
-            HashMap<String,String> map =new HashMap<>();
+            HashMap<String, String> map = new HashMap<>();
             map.put("appId", ContentKey.APP_ID);
-            map.put("password",psw);
-            map.put("phone",phoneNum);
+            map.put("password", psw);
+            map.put("phone", phoneNum);
             map.put("requestTime", EidHttpUtil.getBizTime());
-            map.put("username","");
+            map.put("username", "");
 
             json = EncryptUtil.getJson(map);
             json.put("sign", EncryptUtil.getHmacMd5Str(ContentKey.MD5_KEY, Base64.encodeToString(
                     EncryptUtil.getSign(map).getBytes("UTF-8"), Base64.NO_WRAP)));
-            HttpUtil.getHttpUtilInstance(this).send(ContentKey.LOGIN_URL,json,new HttpClickCallBack(this,this));
+            HttpUtil.getHttpUtilInstance(this).send(ContentKey.LOGIN_URL, json, new HttpClickCallBack(this, this));
         } catch (JSONException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -97,12 +99,13 @@ public class LoginActivity extends BaseActivity{
             JSONObject object = new JSONObject(json);
             String code = (String) object.get("code");
 
-            if(code.equals(ContentKey.success)){
+            if (code.equals(ContentKey.success)) {
                 String id = (String) object.getJSONObject("user").get("id");
                 SharedUtil.getInstance(LoginActivity.this).setUserId(id);
-                jumpToFinish(this,MainActivity.class);
+                SharedUtil.getInstance(LoginActivity.this).setPhoneNum(phoneNum);
+                jumpToFinish(this, MainActivity.class);
                 show("登录成功");
-            }else{
+            } else {
                 show("用户名或密码错误");
                 jumpToFinish(this,MainActivity.class);
                 //测试用

@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.mainView.NewsActivity;
@@ -17,11 +18,13 @@ import com.justin.hzwl.myhzwl.activity.mainView.searchView.SearchActivity;
 
 import util.NfcUtils;
 import util.NormalDialog;
+import util.SharedUtil;
 
 public class MainActivity extends BaseActivity {
     ImageView mDrawerMenu,mAlermMenu,mSearch,heard;
     DrawerLayout drawerLayout;
     LinearLayout feedback,qb,history,about,self;
+    TextView phoneNum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,8 @@ public class MainActivity extends BaseActivity {
         history = (LinearLayout) findViewById(R.id.history_ll);
         about = (LinearLayout) findViewById(R.id.about_ll);
         self = (LinearLayout) findViewById(R.id.self_layout);
+        phoneNum = (TextView) findViewById(R.id.phoneNum);
+        phoneNum.setText(SharedUtil.getInstance(this).getPhoneNum());
     }
 
     @Override

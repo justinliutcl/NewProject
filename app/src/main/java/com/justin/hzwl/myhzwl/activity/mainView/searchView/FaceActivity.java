@@ -29,10 +29,11 @@ import util.ContentKey;
 import util.EncryptUtil;
 import util.HttpUtil;
 
-public class FaceActivity extends BaseActivity{
+public class FaceActivity extends BaseActivity {
     SurfaceView surfaceView;
     CameraSurfaceHolder mCameraSurfaceHolder = new CameraSurfaceHolder();
     ImageView face_sure_iv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +43,17 @@ public class FaceActivity extends BaseActivity{
     @Override
     public void init() {
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
-        mCameraSurfaceHolder.setCameraSurfaceHolder(this,surfaceView);
+        mCameraSurfaceHolder.setCameraSurfaceHolder(this, surfaceView);
         face_sure_iv = (ImageView) findViewById(R.id.face_sure_iv);
         face_sure_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bitmap bit = mCameraSurfaceHolder.getBitmap();
-                if(bit!=null){
+                if (bit != null) {
                     String imageBase = AppUtil.Bitmap2StrByBase64(bit);
                     send(imageBase);
+                }else{
+                    show("请从新拍摄");
                 }
             }
         });
@@ -62,13 +65,13 @@ public class FaceActivity extends BaseActivity{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
         }
     }
 
-    public void send(String imageBase){
-        JSONObject jsonObj=null;
+    public void send(String imageBase) {
+        JSONObject jsonObj = null;
         try {
             jsonObj = new JSONObject();
             jsonObj.put("username", getIntent().getStringExtra("name"));
@@ -87,8 +90,8 @@ public class FaceActivity extends BaseActivity{
             String sign = EncryptUtil.getHmacMd5Str("994EB0BC820FBAF80AC0FF2B41DB9115"
                     , Base64.encodeToString(dataToSign.getBytes(), Base64.NO_WRAP));
             jsonObj.put("sign", sign);
-             HttpUtil.getHttpUtilInstance(FaceActivity.this).send(ContentKey.FACE_URL,jsonObj,new HttpClickCallBack(FaceActivity.this,FaceActivity.this));
-        }catch (Exception e){
+            HttpUtil.getHttpUtilInstance(FaceActivity.this).send(ContentKey.FACE_URL, jsonObj, new HttpClickCallBack(FaceActivity.this, FaceActivity.this));
+        } catch (Exception e) {
 
         }
     }
@@ -99,10 +102,10 @@ public class FaceActivity extends BaseActivity{
         Log.i("asd",json);
         try {
             JSONObject object = new JSONObject(json);
-            String code = (String) object.get("status");
-            if(code.equals(ContentKey.faceCode)){
-                SearchSuccessActivity.jump(FaceActivity.this,SearchSuccessActivity.FRAM_FACE);
-            }else{
+            String code = String.valueOf(object.get("status"));
+            if (code.equals(ContentKey.faceCode)) {
+                SearchSuccessActivity.jump(FaceActivity.this, SearchSuccessActivity.FRAM_FACE);
+            } else {
                 show("匹配失败");
             }
         } catch (JSONException e) {
@@ -113,6 +116,6 @@ public class FaceActivity extends BaseActivity{
     @Override
     public void onFailure(Call call, IOException e) {
         super.onFailure(call, e);
-        Log.i("asd",e.getMessage());
+        Log.i("asd", e.getMessage());
     }
 }

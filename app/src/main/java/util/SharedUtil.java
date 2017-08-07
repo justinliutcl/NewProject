@@ -37,6 +37,15 @@ public class SharedUtil {
         return value;
     }
 
+    public void setPhoneNum(String number){
+        setDate(ContentKey.PHONE_NUMBER, number);
+    }
+
+    public String getPhoneNum() {
+        String value = getData(ContentKey.PHONE_NUMBER);
+        return value;
+    }
+
     public boolean getFirst() {
         String value = getData(ContentKey.IS_FIRST);
         if (value != null) {

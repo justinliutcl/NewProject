@@ -254,7 +254,6 @@ public class SearchActivity extends BaseActivity{
                 phone.setImageResource(R.drawable.icon_eidcard);
                 eid_iv.setImageResource(R.drawable.icon_eid_card_select);
                 idCard_iv.setImageResource(R.drawable.icon_id_card_nor);
-                jumpTo(this,AccreditActivity.class);
                 isEIDCard = true;
                 no_idcard_iv.setVisibility(View.INVISIBLE);
                 break;
@@ -542,8 +541,6 @@ public class SearchActivity extends BaseActivity{
     public void onSuccess(String json) {
         super.onSuccess(json);
         dialog.dismiss();
-        Log.i("asd",json);
-        Toast.makeText(SearchActivity.this,json,Toast.LENGTH_LONG).show();
         if(isEIDCard){
             jumpTo(this,AccreditActivity.class);
         }else{

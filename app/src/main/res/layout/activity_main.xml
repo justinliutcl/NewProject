@@ -40,10 +40,11 @@
                 />
 
             <TextView
+                android:id="@+id/phoneNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#a1a1a1"
-                android:text="18300000000"
+                android:text=""
                 android:layout_marginTop="11dp"
                 android:textSize="12sp"/>
 
