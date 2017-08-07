@@ -107,9 +107,9 @@ public class LoginActivity extends BaseActivity {
                 show("登录成功");
             } else {
                 show("用户名或密码错误");
-                jumpToFinish(this,MainActivity.class);
-                //测试用
-                SharedUtil.getInstance(LoginActivity.this).setUserId("51e8522e662147c69040066e7b2b4e12");
+//                jumpToFinish(this,MainActivity.class);
+//                //测试用
+//                SharedUtil.getInstance(LoginActivity.this).setUserId("51e8522e662147c69040066e7b2b4e12");
             }
         } catch (JSONException e) {
             e.printStackTrace();
