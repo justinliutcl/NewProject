@@ -310,7 +310,7 @@ public class SearchActivity extends BaseActivity{
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpTo(SearchActivity.this,FaceActivity.class);
+                jumpTo(SearchActivity.this,SearchSuccessActivity.class);
                 dialog.dismiss();
             }
         });
