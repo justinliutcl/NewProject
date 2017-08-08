@@ -2,6 +2,7 @@ package com.justin.hzwl.myhzwl.activity.mainView.searchView;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.view.SurfaceView;
@@ -32,6 +33,8 @@ public class FaceActivity extends BaseActivity {
     SurfaceView surfaceView;
     CameraSurfaceHolder mCameraSurfaceHolder = new CameraSurfaceHolder();
     ImageView face_sure_iv;
+    ImageView bitmap;
+    ImageView demo_pic;
     AlertDialog dialog;
 
     @Override
@@ -45,19 +48,27 @@ public class FaceActivity extends BaseActivity {
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
         mCameraSurfaceHolder.setCameraSurfaceHolder(this, surfaceView);
         face_sure_iv = (ImageView) findViewById(R.id.face_sure_iv);
+        bitmap = (ImageView) findViewById(R.id.bitmap);
+        demo_pic = (ImageView) findViewById(R.id.demo_pic);
         face_sure_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bitmap bit = mCameraSurfaceHolder.getBitmap();
                 if (bit != null) {
                     dialog = NormalDialog.showPassDialog(FaceActivity.this);
-                    String imageBase = AppUtil.Bitmap2StrByBase64(bit);
+                    String imageBase = AppUtil.Bitmap2StrByBase64(bit,demo_pic,FaceActivity.this);
                     send(imageBase);
                 } else {
                     show("请从新拍摄");
                 }
             }
         });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mCameraSurfaceHolder.setWH(bitmap.getWidth(), bitmap.getHeight());
+            }
+        }, 100);
     }
 
     @Override

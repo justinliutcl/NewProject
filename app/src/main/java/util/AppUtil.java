@@ -5,9 +5,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.provider.Settings;
 import android.util.Base64;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
@@ -28,7 +33,7 @@ import java.util.UUID;
 
 public class AppUtil {
 
-    public static Bitmap generateBitmap(String content,int width, int height) {
+    public static Bitmap generateBitmap(String content, int width, int height) {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         Map<EncodeHintType, String> hints = new HashMap<>();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
@@ -50,6 +55,7 @@ public class AppUtil {
         }
         return null;
     }
+
     @SuppressLint("InlinedApi")
     protected void openNFCSettings(Activity context) {
 
@@ -127,19 +133,56 @@ public class AppUtil {
 //        return reqJson;
 //    }
 
-    public static String Bitmap2StrByBase64(Bitmap bit){
-        ByteArrayOutputStream bos=new ByteArrayOutputStream();
-        bit.compress(Bitmap.CompressFormat.JPEG, 50, bos);//参数100表示不压缩
-        byte[] bytes=bos.toByteArray();
+    public static String Bitmap2StrByBase64(Bitmap bit, ImageView imageView, Context context) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        long size = bit.getByteCount() / 1024;
+//        int qua = (int) (200f / size * 100);
+        bit.compress(Bitmap.CompressFormat.JPEG, 70, bos);
+        byte[] bytes = bos.toByteArray();
+        imageView.setDrawingCacheEnabled(true);
+        Glide.with(context).load(bytes).into(imageView);
+        Bitmap drawable = imageView.getDrawingCache();
+
+        ByteArrayOutputStream bos2 = new ByteArrayOutputStream();
+        long size2 = drawable.getByteCount() / 1024;
+        int qua2 = (int) (97f / size2 * 100);
+        if (qua2 >= 100)
+            qua2 = 100;
+        drawable.compress(Bitmap.CompressFormat.JPEG, qua2, bos2);
+        bytes = bos2.toByteArray();
+        imageView.setDrawingCacheEnabled(false);
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
-    public static String getURLencode(String text){
+    public static String getURLencode(String text) {
         try {
-            return java.net.URLEncoder.encode(text,"utf-8");
+            return java.net.URLEncoder.encode(text, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        Bitmap bitmap = Bitmap.createBitmap(
+
+                drawable.getIntrinsicWidth(),
+
+                drawable.getIntrinsicHeight(),
+
+                drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+
+                        : Bitmap.Config.RGB_565);
+
+        Canvas canvas = new Canvas(bitmap);
+
+        //canvas.setBitmap(bitmap);
+
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+
+        drawable.draw(canvas);
+
+        return bitmap;
+
     }
 }

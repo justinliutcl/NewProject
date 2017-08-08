@@ -25,6 +25,7 @@ public final class SurfaceViewCallback implements SurfaceHolder.Callback, Camera
     Camera mCamera;
     Bitmap bitmap = null;
     Thread thread;
+    int mWidth, mHeight;
 
     public void setContext(Context context) {
         this.context = context;
@@ -114,4 +115,10 @@ public final class SurfaceViewCallback implements SurfaceHolder.Callback, Camera
     public Bitmap getBitmap() {
         return bitmap;
     }
+
+    public void setWH(int w, int h) {
+        mWidth = w;
+        mHeight = h;
+    }
+
 }

@@ -33,6 +33,11 @@ public class CameraSurfaceHolder {
     public Bitmap getBitmap(){
         return callback.getBitmap();
     }
+
+    public void setWH(int w,int h){
+        callback.setWH(w,h);
+    }
+
 }
 
 
