@@ -29,6 +29,7 @@ public class MyselfActivity extends BaseActivity {
         back_iv = findViewById(R.id.back_iv);
         breakUp = findViewById(R.id.breakUp);
         resetCode = (LinearLayout) findViewById(R.id.reset_code);
+        phoneNum = (TextView) findViewById(R.id.phoneNum);
         phoneNum.setText(SharedUtil.getInstance(this).getPhoneNum());
     }
 

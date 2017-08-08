@@ -1,17 +1,15 @@
 package com.justin.hzwl.myhzwl.activity.mainView.searchView;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Base64;
-import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.justin.hzwl.myhzwl.R;
 import com.justin.hzwl.myhzwl.activity.BaseActivity;
-import com.justin.hzwl.myhzwl.activity.MainActivity;
 import com.justin.hzwl.myhzwl.activity.mainView.searchView.surface.CameraSurfaceHolder;
 import com.justin.hzwl.myhzwl.modul.callbackInterface.HttpClickCallBack;
 
@@ -28,11 +26,13 @@ import util.AppUtil;
 import util.ContentKey;
 import util.EncryptUtil;
 import util.HttpUtil;
+import util.NormalDialog;
 
 public class FaceActivity extends BaseActivity {
     SurfaceView surfaceView;
     CameraSurfaceHolder mCameraSurfaceHolder = new CameraSurfaceHolder();
     ImageView face_sure_iv;
+    AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +50,10 @@ public class FaceActivity extends BaseActivity {
             public void onClick(View v) {
                 Bitmap bit = mCameraSurfaceHolder.getBitmap();
                 if (bit != null) {
+                    dialog = NormalDialog.showPassDialog(FaceActivity.this);
                     String imageBase = AppUtil.Bitmap2StrByBase64(bit);
                     send(imageBase);
-                }else{
+                } else {
                     show("请从新拍摄");
                 }
             }
@@ -99,23 +100,24 @@ public class FaceActivity extends BaseActivity {
     @Override
     public void onSuccess(String json) {
         super.onSuccess(json);
-        Log.i("asd",json);
+        dialog.dismiss();
         try {
             JSONObject object = new JSONObject(json);
             String code = String.valueOf(object.get("status"));
             if (code.equals(ContentKey.faceCode)) {
                 SearchSuccessActivity.jump(FaceActivity.this, SearchSuccessActivity.FRAM_FACE);
             } else {
-                show("匹配失败");
+                show("匹配失败" + code);
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            show("匹配错误");
         }
     }
 
     @Override
     public void onFailure(Call call, IOException e) {
         super.onFailure(call, e);
-        Log.i("asd", e.getMessage());
+        show("错误： " + e.getMessage());
     }
 }

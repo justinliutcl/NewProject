@@ -310,7 +310,7 @@ public class SearchActivity extends BaseActivity{
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpTo(SearchActivity.this,SearchSuccessActivity.class);
+                jumpTo(SearchActivity.this,FaceActivity.class);
                 dialog.dismiss();
             }
         });
@@ -542,7 +542,7 @@ public class SearchActivity extends BaseActivity{
         super.onSuccess(json);
         dialog.dismiss();
         if(isEIDCard){
-            jumpTo(this,AccreditActivity.class);
+            jumpToFinish(this,SearchSuccessActivity.class);
         }else{
             showCardSelect();
         }
